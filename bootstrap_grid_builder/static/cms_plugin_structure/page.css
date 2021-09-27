@@ -1,0 +1,36 @@
+html, body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+  box-sizing: border-box;
+  margin:0;
+  padding: 0;
+}
+body {
+  width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+*{
+  box-sizing: border-box;
+}
+form .aligned ul, form .aligned input + p.help, form .aligned textarea + p.help, form .aligned select + p.help, form .aligned input + div.help, form .aligned textarea + div.help, form .aligned select + div.help  {
+  margin-left: 150px;
+}
+.form-row.data_dumper{
+  display: none
+}
+.form-row.form_data, .form-row.field-form_data{
+  border:0;
+}
+
+#header {
+    display: none;
+}
+.cms-admin div.breadcrumbs{
+    display: none;
+}
+#content, #content.colM{
+  margin:0;
+  padding:20px;
+}
