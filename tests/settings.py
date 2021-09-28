@@ -73,7 +73,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',
                 'sekizai.context_processors.sekizai',
-                'bootstrap_grid_builder.context_processors.grid_builder_settings',
+                #'bootstrap_grid_builder.context_processors.grid_builder_settings',
                 'cms.context_processors.cms_settings',
             ],
         },
