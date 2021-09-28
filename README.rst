@@ -20,7 +20,7 @@ The full documentation is at https://django-cms-bootstrap-grid-builder.readthedo
 Quickstart
 ----------
 
-.. warning:: ATTENTION !!! This package requires **django-cms** integration
+:warning: **ATTENTION !!! This package requires **django-cms** integration
 
 Install Django CMS bootstrap grid builder::
 
