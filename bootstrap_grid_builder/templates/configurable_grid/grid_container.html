@@ -1,5 +1,6 @@
 {% load cms_tags %}
-<{{instance.tag_type|default:'div' }}
+<grid-container
+  data-tag-type="{{instance.tag_type|default:'div'}}"
   class="{{ instance.variant_class|default:'' }}"
 >
   {% if instance.child_plugin_instances %}
@@ -9,4 +10,4 @@
       {% endfor %}
     </template>
   {% endif %}
-</{{instance.tag_type|default:'div' }}>
+</grid-container>

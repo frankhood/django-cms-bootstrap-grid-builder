@@ -98,7 +98,7 @@ class GridColPluginAbstractModel(CMSPlugin):
 
 
 class GridRowPluginAbstractModel(CMSPlugin):
-    variant = ClassGridRowPrefixField(
+    variant_class = ClassGridRowPrefixField(
         verbose_name="Variant Class",
         choices=app_settings.VARIANT_GRID_ROW_CLASSES_CHOICES,
         max_length=64,

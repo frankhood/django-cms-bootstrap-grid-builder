@@ -19,7 +19,6 @@ def create_grid_plugins_structure(parent_plugin, plugins_map):
     containers = []
     import ast
     plugins_map = ast.literal_eval(plugins_map)
-    print("PLUGINS MAP => ", plugins_map)
     for container_data in plugins_map.get('containers', []):
         container_attrs = container_data.get('attrs', {})
         container_plugin_model = apps.get_model(
@@ -48,7 +47,7 @@ def create_grid_plugins_structure(parent_plugin, plugins_map):
                     getattr(settings, "GRID_COL_PLUGIN_MODEL", "bootstrap_grid_builder.GridColPluginModel")
                 )
                 col_plugin = plugin_pool.get_plugin(getattr(settings, "GRID_COL_PLUGIN", "GridColPlugin"))
-                _col_obj = col_plugin_model.objects.create(
+                col_plugin_model.objects.create(
                     parent=row_obj, placeholder=row_obj.placeholder,
                     language=container_obj.language,
                     cols_xs=col_attrs.get("cols_xs", ""),
