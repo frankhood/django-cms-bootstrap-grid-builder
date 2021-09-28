@@ -1,8 +1,8 @@
 {% load cms_tags %}
-<grid-row class="row {{instance.get_variant_class_css_class}}">
+<div class="row {{instance.get_variant_class_css_class}}">
   {% if instance.child_plugin_instances %}
     {% for plugin in instance.child_plugin_instances %}
         {% render_plugin plugin %}
     {% endfor %}
   {% endif %}
-</grid-row>
+</div>
