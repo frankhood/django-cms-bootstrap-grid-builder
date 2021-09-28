@@ -13,7 +13,7 @@ from django.test import TestCase
 from bootstrap_grid_builder import models
 
 
-class TestBootstrap_grid_builder(TestCase):
+class TestBootstrapGridBuilder(TestCase):
 
     def setUp(self):
         pass
