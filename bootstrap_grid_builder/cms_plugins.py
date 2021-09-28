@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 class ConfigurableGridPlugin(CMSPluginBase):
     model = BaseStructurePluginModel
     name = _('Cms Grid')
-    render_template = 'cms_plugins/configurable_grid/configurable_grid.html'
+    render_template = 'configurable_grid/configurable_grid.html'
     allow_children = True
     child_classes = [getattr(settings, "GRID_CONTAINER_PLUGIN", "GridContainerPlugin")]
 
@@ -75,7 +75,7 @@ class ConfigurableGridPlugin(CMSPluginBase):
 class GridContainerPlugin(CMSPluginBase):
     model = GridContainerPluginModel
     name = _("Grid Container")
-    render_template = 'cms_plugins/configurable_grid/grid_container.html'
+    render_template = 'configurable_grid/grid_container.html'
     allow_children = True
     child_classes = ["GridRowPlugin"]
 
@@ -93,7 +93,7 @@ if not getattr(settings, "GRID_CONTAINER_PLUGIN", None):
 class GridRowPlugin(CMSPluginBase):
     model = GridRowPluginModel
     name = _("Grid Row")
-    render_template = 'cms_plugins/configurable_grid/grid_row.html'
+    render_template = 'configurable_grid/grid_row.html'
     allow_children = True
     require_parent = True
     parent_classes = ["GridContainerPlugin"]
@@ -113,14 +113,18 @@ if not getattr(settings, "GRID_ROW_PLUGIN", None):
 class GridColPlugin(CMSPluginBase):
     model = GridColPluginModel
     name = _("Grid Column")
-    render_template = 'cms_plugins/configurable_grid/grid_column.html'
+    render_template = 'configurable_grid/grid_column.html'
     allow_children = True
     require_parent = True
     parent_classes = ['GridRowPlugin']
 
     fieldsets = (
         (None, {"fields": (
-            ("variant_class", "tag_type"),
+            ("cols_xs",),
+            ("cols_sm",),
+            ("cols_md",),
+            ("cols_lg",),
+            ("cols_xl",),
         )}),
     )
 

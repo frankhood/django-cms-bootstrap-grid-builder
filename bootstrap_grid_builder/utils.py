@@ -2,18 +2,13 @@
     Created at 24/04/20
 """
 import logging
-from project.apps.profiles.utils import process_user_optin_token
+import json
 
 from cms.plugin_pool import plugin_pool
 from django.apps import apps
 from django.conf import settings
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 
-
-try:
-    from django.forms.util import flatatt
-except ImportError:
-    from django.forms.utils import flatatt
 
 from .models import BaseStructurePluginModel, GridContainerPluginModel, GridRowPluginModel, GridColPluginModel
 
@@ -22,10 +17,12 @@ logger = logging.getLogger(__name__)
 
 def create_grid_plugins_structure(parent_plugin, plugins_map):
     containers = []
+    import ast
+    plugins_map = ast.literal_eval(plugins_map)
     for container_data in plugins_map.get('containers', []):
         container_attrs = container_data.get('attrs', {})
         container_plugin_model = apps.get_model(
-            getattr(settings, "GRID_CONTAINER_PLUGIN_MODEL", "cms_plugin_structure.GridContainerPluginModel")
+            getattr(settings, "GRID_CONTAINER_PLUGIN_MODEL", "bootstrap_grid_builder.GridContainerPluginModel")
         )
         container_plugin = plugin_pool.get_plugin(getattr(settings, "GRID_CONTAINER_PLUGIN", "GridContainerPlugin"))
         container_obj = container_plugin_model.objects.create(
@@ -36,7 +33,7 @@ def create_grid_plugins_structure(parent_plugin, plugins_map):
         for row_data in container_data.get('rows', []):
             row_attrs = row_data.get('attrs', {})
             row_plugin_model = apps.get_model(
-                getattr(settings, "GRID_ROW_PLUGIN_MODEL", "cms_plugin_structure.GridRowPluginModel")
+                getattr(settings, "GRID_ROW_PLUGIN_MODEL", "bootstrap_grid_builder.GridRowPluginModel")
             )
             row_plugin = plugin_pool.get_plugin(getattr(settings, "GRID_ROW_PLUGIN", "GridRowPlugin"))
             row_obj = row_plugin_model.objects.create(
@@ -47,7 +44,7 @@ def create_grid_plugins_structure(parent_plugin, plugins_map):
             for col_data in row_data.get('cols', {}):
                 col_attrs = col_data.get('attrs', {})
                 col_plugin_model = apps.get_model(
-                    getattr(settings, "GRID_COL_PLUGIN_MODEL", "cms_plugin_structure.GridColPluginModel")
+                    getattr(settings, "GRID_COL_PLUGIN_MODEL", "bootstrap_grid_builder.GridColPluginModel")
                 )
                 col_plugin = plugin_pool.get_plugin(getattr(settings, "GRID_COL_PLUGIN", "GridColPlugin"))
                 _col_obj = col_plugin_model.objects.create(

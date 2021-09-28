@@ -49,7 +49,7 @@ DEFAULT_COL_CHOICE = ('12', '12')
 
 
 class GridColPluginAbstractModel(CMSPlugin):
-    cols = ColClassPrefixField(
+    cols_xs = ColClassPrefixField(
         verbose_name="Base column Class",
         choices=COL_CHOICES,
         max_length=64,
@@ -109,3 +109,31 @@ class GridRowPluginAbstractModel(CMSPlugin):
 
     class Meta:
         abstract = True
+
+
+class BaseStructurePluginModel(BaseStructurePluginAbstractModel):
+
+    class Meta:
+        verbose_name = _("Base Structure Plugin")
+        verbose_name_plural = _("Base Structure Plugins")
+
+
+class GridContainerPluginModel(GridContainerPluginAbstractModel):
+
+    class Meta:
+        verbose_name = _("Grid Container Plugin")
+        verbose_name_plural = _("Grid Container Plugins")
+
+
+class GridColPluginModel(GridColPluginAbstractModel):
+
+    class Meta:
+        verbose_name = _("Grid Column Plugin")
+        verbose_name_plural = _("Grid Column Plugins")
+
+
+class GridRowPluginModel(GridRowPluginAbstractModel):
+
+    class Meta:
+        verbose_name = _("Grid Row Plugin")
+        verbose_name_plural = _("Grid Row Plugins")

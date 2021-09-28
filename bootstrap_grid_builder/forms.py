@@ -12,14 +12,14 @@ from django.template.loader import get_template
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.forms.widgets import Textarea
 from django.utils.safestring import mark_safe
-from .models import BaseStructurePluginAbstractModel
+
+from .models import BaseStructurePluginModel
 
 
 try:
     from django.forms.util import flatatt
 except ImportError:
     from django.forms.utils import flatatt
-from jsoneditor.fields.django_jsonfield import JSONFormField
 
 logger = logging.getLogger(__name__)
 
@@ -71,7 +71,7 @@ class GridBuilderWidget(Textarea):
         return mark_safe(r)
 
 
-class GridBuilderField(JSONFormField):
+class GridBuilderField(forms.CharField):
     widget = GridBuilderWidget
 
 
@@ -81,5 +81,5 @@ class GridPluginForm(forms.ModelForm):
     )
 
     class Meta:
-        model = BaseStructurePluginAbstractModel
+        model = BaseStructurePluginModel
         fields = ('form_data',)
