@@ -81,8 +81,8 @@ Override GridContainerPlugin and unregister it.
 
 
 .. code-block:: python
-    # **your_app/cms_plugins.py**
 
+    # **your_app/cms_plugins.py**
     plugin_pool.unregister_plugin(GridContainerPlugin)
 
     @plugin_pool.register_plugin
@@ -126,6 +126,7 @@ It is necessary to do more or less the same thing for the models.
 Override GridContainerPluginAbstractModel and create your model:
 
 .. code-block:: python
+
     # **your_app/models.py**
 
     class MyCustomGridContainerPluginModel(GridContainerPluginAbstractModel):
