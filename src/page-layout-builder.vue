@@ -980,6 +980,9 @@ export default {
 
   .componentDescription {
     font-size: 18px;
+    p {
+        padding-bottom: 10px;
+      }
   }
 
   .containersBtns {

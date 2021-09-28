@@ -14,8 +14,13 @@ body {
 *{
   box-sizing: border-box;
 }
+/*
 form .aligned ul, form .aligned input + p.help, form .aligned textarea + p.help, form .aligned select + p.help, form .aligned input + div.help, form .aligned textarea + div.help, form .aligned select + div.help  {
   margin-left: 150px;
+}
+*/
+.module .help {
+  margin: 4px 0px 20px 22px;
 }
 .form-row.data_dumper{
   display: none
