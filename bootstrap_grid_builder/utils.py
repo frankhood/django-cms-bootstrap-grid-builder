@@ -19,6 +19,7 @@ def create_grid_plugins_structure(parent_plugin, plugins_map):
     containers = []
     import ast
     plugins_map = ast.literal_eval(plugins_map)
+    print("PLUGINS MAP => ", plugins_map)
     for container_data in plugins_map.get('containers', []):
         container_attrs = container_data.get('attrs', {})
         container_plugin_model = apps.get_model(
