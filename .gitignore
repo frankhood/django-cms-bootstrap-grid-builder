@@ -46,3 +46,4 @@ output/*/index.html
 docs/_build
 
 db.sqlite3
+node_modules
