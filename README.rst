@@ -1,6 +1,6 @@
-=============================
+=================================
 Django CMS bootstrap grid builder
-=============================
+=================================
 
 .. image:: https://badge.fury.io/py/django-cms-bootstrap-grid-builder.svg
     :target: https://badge.fury.io/py/django-cms-bootstrap-grid-builder
@@ -11,7 +11,6 @@ Django CMS bootstrap grid builder
 .. image:: https://codecov.io/gh/frankhood/django-cms-bootstrap-grid-builder/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/frankhood/django-cms-bootstrap-grid-builder
 
-Your project description goes here
 
 Documentation
 -------------
@@ -20,6 +19,8 @@ The full documentation is at https://django-cms-bootstrap-grid-builder.readthedo
 
 Quickstart
 ----------
+
+> ATTENTION !!! This package requires django-cms integration
 
 Install Django CMS bootstrap grid builder::
 
@@ -31,32 +32,137 @@ Add it to your `INSTALLED_APPS`:
 
     INSTALLED_APPS = (
         ...
-        'bootstrap_grid_builder.apps.BootstrapGridBuilderConfig',
+        'bootstrap_grid_builder',
         ...
     )
 
-Add Django CMS bootstrap grid builder's URL patterns:
+If you want to use bootstrap_grid_builder by defaults you need to specify only 
+default plugin structure placeholder in your settings.py. 
 
 .. code-block:: python
 
-    from bootstrap_grid_builder import urls as bootstrap_grid_builder_urls
+    GRID_PLUGIN_STRUCTURE_PLACEHOLDER = "grid_placeholder"
 
 
-    urlpatterns = [
-        ...
-        url(r'^', include(bootstrap_grid_builder_urls)),
-        ...
-    ]
+And add this placeholder in your home.html like this:
 
-Features
---------
+.. code-block:: html
 
-* TODO
+    {% load cms_tags sekizai_tags %}
+    <html>
+        <head>
+            <title>{% page_attribute "page_title" %}</title>
+            {% render_block "css" %}
+        </head>
+        <body>
+            {% cms_toolbar %}
+            {% placeholder "grid_placeholder" %}
+            {% render_block "js" %}
+        </body>
+    </html>
+
+
+Then run migrate to apply package migrations:
+
+::
+
+    $ python manage.py migrate
+
+
+When the user create the page all the structure will be insert in this placeholder
+
+HowTo customize Grid Plugins & Grid Plugin Models
+-------------------------------------------------
+
+You can override actual grid plugins.
+
+
+Override GridContainerPlugin and unregister it.
+
+> your_app/cms_plugins.py
+
+.. code-block:: python
+
+    plugin_pool.unregister_plugin(GridContainerPlugin)
+
+    @plugin_pool.register_plugin
+    class MyCustomGridContainerPlugin(GridContainerPlugin):
+        model = MyCustomGridContainerPluginModel
+        module = _("Custom")
+        name = _("Custom Grid Container")
+        render_template = '...'
+
+        fieldsets = (
+            (None, {"fields": (
+                ...
+                ("variant_class",),
+                ...
+            )}),
+        )
+
+
+Repeat this action for all yours custom plugins.
+
+
+And setting up this variable in your settings.py
+
+.. code-block:: python
+
+    GRID_CONTAINER_PLUGIN = "MyCustomGridContainerPlugin"
+
+
+Repeat this action for all your custom plugins and setting up variables:
+
+.. code-block:: python
+
+    GRID_CONTAINER_PLUGIN = "MyCustomGridContainerPlugin"
+    GRID_COL_PLUGIN = "MyCustomGridColPlugin"
+    GRID_ROW_PLUGIN = "MyCustomGridRowPlugin"
+
+
+It is necessary to do more or less the same thing for the models.
+
+
+Override GridContainerPluginAbstractModel and create your model:
+
+> your_app/models.py
+
+.. code-block:: python
+
+    class MyCustomGridContainerPluginModel(GridContainerPluginAbstractModel):
+
+    class Meta:
+        verbose_name = _("My Custom grid container plugin")
+        verbose_name_plural = _("My Custom grid container plugins")
+
+
+Repeat this action for all yours custom plugin models.
+
+And setting up this variable in your settings.py
+
+.. code-block:: python
+
+    GRID_CONTAINER_PLUGIN_MODEL = "your_app.MyCustomGridContainerPluginModel"
+
+Repeat this action for all your custom plugin models and setting up variables:
+
+.. code-block:: python
+
+    GRID_CONTAINER_PLUGIN_MODEL = "your_app.MyCustomGridContainerPluginModel"
+    GRID_COL_PLUGIN_MODEL = "your_app.MyCustomGridColPluginModel"
+    GRID_ROW_PLUGIN_MODEL = "your_app.MyCustomGridRowPluginModel"
+
+
+After model creation run makemigration & migrate to create yours models in database
+
+::
+
+    $ python manage.py makemigrations
+    $ python manage.py migrate
+
 
 Running Tests
 -------------
-
-Does the code actually work?
 
 ::
 
@@ -71,7 +177,8 @@ Development commands
 ::
 
     pip install -r requirements_dev.txt
-    invoke -l
+    python manage.py migrate
+    python manage.py runserver
 
 
 Credits
