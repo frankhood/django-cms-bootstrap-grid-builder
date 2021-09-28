@@ -567,7 +567,7 @@ export default {
     },
     serializeRow(options) {
       return {
-        attrs: {},
+        attrs: {variant_class: ''},
         cols: []
       };
     },
@@ -672,9 +672,12 @@ export default {
     },
     removeMe(item) {
       let container = this.containers.find(o => o.indexContainer === item.indexContainer);
-      container.layoutD.splice(container.layoutD.find(o => o.index === item.i), 1);
-      container.layoutT.splice(container.layoutT.find(o => o.index === item.i), 1);
-      container.layoutS.splice(container.layoutS.find(o => o.index === item.i), 1);
+      const elementToDeleteD = container.layoutD.find(o => o.i === item.i);
+      const elementToDeleteT = container.layoutT.find(o => o.i === item.i);
+      const elementToDeleteS = container.layoutS.find(o => o.i === item.i);
+      container.layoutD.splice(container.layoutD.indexOf(elementToDeleteD), 1);
+      container.layoutT.splice(container.layoutT.indexOf(elementToDeleteT), 1);
+      container.layoutS.splice(container.layoutS.indexOf(elementToDeleteS), 1);
       this.refreshAll();
     },
     refreshAll(step) {
