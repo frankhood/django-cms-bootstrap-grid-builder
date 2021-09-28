@@ -1,0 +1,12 @@
+{% load cms_tags %}
+<grid-container
+  class="{{ instance.variant_class|default:'' }}"
+>
+  {% if instance.child_plugin_instances %}
+    <template slot="grid-row">
+      {% for plugin in instance.child_plugin_instances %}
+        {% render_plugin plugin %}
+      {% endfor %}
+    </template>
+  {% endif %}
+</grid-container>

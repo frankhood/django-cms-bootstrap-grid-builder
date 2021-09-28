@@ -1,0 +1,10 @@
+{% load cms_tags %}
+<grid-column class="{{ instance.get_cols_css_class|default:'' }} {{ instance.get_cols_sm_css_class|default:'' }} {{ instance.get_cols_md_css_class|default:'' }} {{ instance.get_cols_lg_css_class|default:'' }} {{ instance.get_cols_xl_css_class|default:'' }}">
+  {% if instance.child_plugin_instances %}
+    <template slot="grid-column-childs">
+      {% for plugin in instance.child_plugin_instances %}
+        {% render_plugin plugin %}
+      {% endfor %}
+    </template>
+  {% endif %}
+</grid-column>
