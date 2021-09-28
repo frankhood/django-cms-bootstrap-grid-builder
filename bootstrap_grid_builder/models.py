@@ -10,10 +10,10 @@ from .fields import ColLGClassPrefixField, ColClassPrefixField, ColSMClassPrefix
 
 
 class BaseStructurePluginAbstractModel(CMSPlugin):
-    variant_class = models.CharField(
-        verbose_name="Variant Class",
-        choices=app_settings.BASE_STRUCTURE_VARIANT_CLASSES_CHOICES,
-        default=app_settings.BASE_STRUCTURE_VARIANT_CLASSES_CHOICES[0][0],
+    tag_type = models.CharField(
+        verbose_name="Tag Type",
+        choices=app_settings.BASE_STRUCTURE_TAG_TYPES_CHOICES,
+        default=app_settings.BASE_STRUCTURE_TAG_TYPES_CHOICES[0][0],
         max_length=64
     )
 
@@ -31,9 +31,9 @@ class GridContainerPluginAbstractModel(CMSPlugin):
     tag_type = models.CharField(
         verbose_name="Tag Type",
         choices=app_settings.TAG_TYPE_GRID_CONTAINER_CLASS_CHOICES,
+        default=app_settings.TAG_TYPE_GRID_CONTAINER_DIV,
         max_length=64,
         blank=True,
-        default=""
     )
 
     class Meta:
@@ -99,7 +99,7 @@ class GridColPluginAbstractModel(CMSPlugin):
 
 
 class GridRowPluginAbstractModel(CMSPlugin):
-    variant = ClassGridRowPrefixField(
+    variant_class = ClassGridRowPrefixField(
         verbose_name="Variant Class",
         choices=app_settings.VARIANT_GRID_ROW_CLASSES_CHOICES,
         max_length=64,

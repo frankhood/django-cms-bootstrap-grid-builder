@@ -45,7 +45,7 @@ class ConfigurableGridPlugin(CMSPluginBase):
     change_fieldsets = (
         (None, {
             'fields': (
-                ('variant_class',),
+                ('tag_type',),
             )
         }),
     )

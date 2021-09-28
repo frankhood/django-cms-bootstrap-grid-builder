@@ -1,5 +1,5 @@
 {% load cms_tags %}
-<grid-container
+<{{instance.tag_type}}
   class="{{ instance.variant_class|default:'' }}"
 >
   {% if instance.child_plugin_instances %}
@@ -9,4 +9,4 @@
       {% endfor %}
     </template>
   {% endif %}
-</grid-container>
+</{{instance.tag_type}}>

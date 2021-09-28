@@ -19,6 +19,7 @@ def create_grid_plugins_structure(parent_plugin, plugins_map):
     containers = []
     import ast
     plugins_map = ast.literal_eval(plugins_map)
+    print("PLUGINS MAP => ", plugins_map)
     for container_data in plugins_map.get('containers', []):
         container_attrs = container_data.get('attrs', {})
         container_plugin_model = apps.get_model(
@@ -38,7 +39,7 @@ def create_grid_plugins_structure(parent_plugin, plugins_map):
             row_plugin = plugin_pool.get_plugin(getattr(settings, "GRID_ROW_PLUGIN", "GridRowPlugin"))
             row_obj = row_plugin_model.objects.create(
                 parent=container_obj, placeholder=container_obj.placeholder, language=container_obj.language,
-                variant=row_attrs.get("variant_class", ""),
+                variant_class=row_attrs.get("variant_class", ""),
                 plugin_type=row_plugin.__name__
             )
             for col_data in row_data.get('cols', {}):
