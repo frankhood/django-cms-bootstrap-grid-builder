@@ -20,7 +20,7 @@ The full documentation is at https://django-cms-bootstrap-grid-builder.readthedo
 Quickstart
 ----------
 
-:warning: **ATTENTION !!! This package requires **django-cms** integration
+:warning: ATTENTION !!! This package requires **django-cms** integration
 
 Install Django CMS bootstrap grid builder::
 
@@ -79,7 +79,7 @@ You can override actual grid plugins.
 
 Override GridContainerPlugin and unregister it.
 
-.. your_app/cms_plugins.py
+[comment]: <> (your_app/cms_plugins.py)
 
 .. code-block:: python
 
@@ -125,7 +125,7 @@ It is necessary to do more or less the same thing for the models.
 
 Override GridContainerPluginAbstractModel and create your model:
 
-.. your_app/models.py
+[comment]: <> (your_app/models.py)
 
 .. code-block:: python
 
