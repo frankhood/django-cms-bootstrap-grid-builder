@@ -166,16 +166,16 @@ After model creation run makemigration & migrate to create yours models in datab
 Frontend with VUE.js Development guide
 --------------------------------------
 
-At `django-cms-bootstrap-grid-builder/src` are located all the vue files of the project
-Once built, the dist will be located at `django-cms-bootstrap-grid-builder/bootstrap_grid_builder/static/cms_plugin_structure/dist`
+At ``django-cms-bootstrap-grid-builder/src`` are located all the vue files of the project
+Once built, the dist will be located at ``django-cms-bootstrap-grid-builder/bootstrap_grid_builder/static/cms_plugin_structure/dist``
 
 **JSON Serialization**
 
-The serialization logic that produces the final JSON for the back-end is implemented in `django-cms-bootstrap-grid-builder/src/page-layout-builder.vue`
+The serialization logic that produces the final JSON for the back-end is implemented in ``django-cms-bootstrap-grid-builder/src/page-layout-builder.vue``
 
 **Grid elements templates**
 
-The templates for each layout element are stored at the following path `django-cms-bootstrap-grid-builder/bootstrap_grid_builder/templates/configurable_grid`
+The templates for each layout element are stored at the following path ``django-cms-bootstrap-grid-builder/bootstrap_grid_builder/templates/configurable_grid``
 
 **Visible debug elements**
 
@@ -186,6 +186,7 @@ It might be usefult to remove the 'template' tags in order to force the child pl
 Below theres an example of debug styles applied to templates
 
 .. code-block:: html
+
     <!-- configurable_grid.html --!>
     style="display: block;position: absolute;padding: 10px;border: 1px solid black; background-color: rgba(150,150,150,0.2);min-height: 100px;"
 
