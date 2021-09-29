@@ -1,24 +1,14 @@
 <template>
-  <div
-      id="plbSpecificity"
-      class="pageLayoutBuilder"
-  >
+  <div id="plbSpecificity" class="pageLayoutBuilder">
     <h2 class="componentTitle">{{ i18n.componentTitle }}</h2>
-    <div
-        class="componentDescription"
-        v-html="i18n.componentDescription"
-    />
+    <div class="componentDescription" v-html="i18n.componentDescription" />
     <div class="containersBtns">
       <h3 class="buttonsTitle">{{ i18n.buttonsTitle }}</h3>
-      <button
-          type="button"
-          @click.prevent="addBoxedContainer"
-      >{{ i18n.addBoxedContainer }}
+      <button type="button" @click.prevent="addBoxedContainer">
+        {{ i18n.addBoxedContainer }}
       </button>
-      <button
-          type="button"
-          @click.prevent="addFluidContainer"
-      >{{ i18n.addFluidContainer }}
+      <button type="button" @click.prevent="addFluidContainer">
+        {{ i18n.addFluidContainer }}
       </button>
     </div>
     <div class="rowFlex layoutsWrapper">
@@ -26,66 +16,78 @@
         <h3 class="layoutTitle">{{ i18n.layoutTitleD }}</h3>
         <div class="page">
           <header class="pageHeader">{{ i18n.pageHeader }}</header>
-          <template v-for="container in containers">
+          <template v-for="(container, i) in containers">
             <drop
-                @drop="(data, event)=>{ handleDrop(data,event,container) }"
-                class="dropzone"
+              :key="'LargeDropzone' + i"
+              class="dropzone"
+              @drop="
+                (data, event) => {
+                  handleDrop(data, event, container);
+                }
+              "
             >
               <button
-                  :class="['deleteContainer',{'deleteBoxed':container.boxed}]"
-                  type="button"
-                  @click="removeContainer(container)"
-              >{{ i18n.del }}
+                :class="['deleteContainer', { deleteBoxed: container.boxed }]"
+                type="button"
+                @click="removeContainer(container)"
+              >
+                {{ i18n.del }}
               </button>
               <grid-layout
-                  :class="['containerPrototype',{'boxed':container.boxed}]"
-                  :layout.sync="container.layoutD"
-                  :col-num="parseInt(colNum)"
-                  :row-height="rowHeight"
-                  :is-draggable="draggable"
-                  :is-resizable="false"
-                  :is-mirrored="false"
-                  :prevent-collision="false"
-                  :vertical-compact="false"
-                  :use-css-transforms="true"
-                  :responsive="false"
-                  @layout-created="layoutCreatedEvent"
-                  @layout-before-mount="layoutBeforeMountEvent"
-                  @layout-mounted="layoutMountedEvent"
-                  @layout-ready="layoutReadyEvent"
-                  @layout-updated="layoutUpdatedEvent"
+                :class="['containerPrototype', { boxed: container.boxed }]"
+                :layout.sync="container.layoutD"
+                :col-num="parseInt(colNum)"
+                :row-height="rowHeight"
+                :is-draggable="draggable"
+                :is-resizable="false"
+                :is-mirrored="false"
+                :prevent-collision="false"
+                :vertical-compact="false"
+                :use-css-transforms="true"
+                :responsive="false"
+                @layout-created="layoutCreatedEvent"
+                @layout-before-mount="layoutBeforeMountEvent"
+                @layout-mounted="layoutMountedEvent"
+                @layout-ready="layoutReadyEvent"
+                @layout-updated="layoutUpdatedEvent"
               >
                 <grid-item
-                    class="GridItem"
-                    :style="computedItemStyle(item.i)"
-                    v-for="item in container.layoutD"
-                    :key="item.i"
-                    :static="item.static"
-                    :x="item.x"
-                    :y="item.y"
-                    :w="item.w"
-                    :h="item.h"
-                    :i="item.i"
-                    @resize="resize"
-                    @move="move"
-                    @resized="resized"
-                    @container-resized="containerResized"
-                    @moved="moved"
+                  v-for="item in container.layoutD"
+                  :key="item.i"
+                  class="GridItem"
+                  :style="computedItemStyle(item.i)"
+                  :static="item.static"
+                  :x="item.x"
+                  :y="item.y"
+                  :w="item.w"
+                  :h="item.h"
+                  :i="item.i"
+                  @resize="resize"
+                  @move="move"
+                  @resized="resized"
+                  @container-resized="containerResized"
+                  @moved="moved"
                 >
                   <button
-                      type="button"
-                      class="utilityCta"
-                      @click="removeMe(item)"
+                    type="button"
+                    class="utilityCta"
+                    @click="removeMe(item)"
                   >
                     <svg
-                        version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 388.245 388.245"
-                        style="enable-background:new 0 0 388.245 388.245;" xml:space="preserve"
+                      id="Capa_1"
+                      version="1.1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      x="0px"
+                      y="0px"
+                      viewBox="0 0 388.245 388.245"
+                      style="enable-background: new 0 0 388.245 388.245"
+                      xml:space="preserve"
                     >
                       <g>
                         <path
-                            style="fill:#010002;"
-                            d="M107.415,388.245h173.334c21.207,0,38.342-17.159,38.342-38.342V80.928H69.097v268.975
+                          style="fill: #010002"
+                          d="M107.415,388.245h173.334c21.207,0,38.342-17.159,38.342-38.342V80.928H69.097v268.975
                             C69.097,371.086,86.264,388.245,107.415,388.245z M253.998,129.643c0-7.178,5.796-13.03,13.006-13.03
                             c7.178,0,13.006,5.853,13.006,13.03v208.311c0,7.21-5.828,13.038-13.006,13.038c-7.21,0-13.006-5.828-13.006-13.038V129.643z
                              M181.491,129.643c0-7.178,5.804-13.03,13.006-13.03c7.178,0,13.006,5.853,13.006,13.03v208.311c0,7.21-5.828,13.038-13.006,13.038
@@ -94,8 +96,8 @@
                             c-7.178,0-12.973-5.828-12.973-13.038V129.643z"
                         />
                         <path
-                            style="fill:#010002;"
-                            d="M294.437,20.451h-52.779C240.39,8.966,230.75,0,218.955,0h-49.682
+                          style="fill: #010002"
+                          d="M294.437,20.451h-52.779C240.39,8.966,230.75,0,218.955,0h-49.682
                             c-11.86,0-21.476,8.966-22.736,20.451H93.792c-25.865,0-46.756,20.955-46.902,46.756h294.466
                             C341.258,41.407,320.335,20.451,294.437,20.451z"
                         />
@@ -103,18 +105,20 @@
                     </svg>
                   </button>
                   <button
-                      v-if="item.w!==12"
-                      type="button"
-                      class="utilityCta"
-                      @click="moreCols(item,'d')"
-                  >+
+                    v-if="item.w !== 12"
+                    type="button"
+                    class="utilityCta"
+                    @click="moreCols(item, 'd')"
+                  >
+                    +
                   </button>
                   <button
-                      v-if="item.w!==1"
-                      type="button"
-                      class="utilityCta"
-                      @click="lessCols(item,'d')"
-                  >-
+                    v-if="item.w !== 1"
+                    type="button"
+                    class="utilityCta"
+                    @click="lessCols(item, 'd')"
+                  >
+                    -
                   </button>
                 </grid-item>
               </grid-layout>
@@ -128,56 +132,58 @@
         <h3 class="layoutTitle">{{ i18n.layoutTitleT }}</h3>
         <div class="page">
           <header class="pageHeader">{{ i18n.pageHeader }}</header>
-          <template v-for="container in containers">
-            <div class="dropzone fakeDropzone">
+          <template v-for="(container, i) in containers">
+            <div :key="'MediumDropzone' + i" class="dropzone fakeDropzone">
               <grid-layout
-                  :class="['containerPrototype',{'boxed':container.boxed}]"
-                  :layout.sync="container.layoutT"
-                  :col-num="parseInt(colNum)"
-                  :row-height="rowHeight"
-                  :is-draggable="true"
-                  :is-resizable="false"
-                  :is-mirrored="false"
-                  :prevent-collision="false"
-                  :vertical-compact="false"
-                  :use-css-transforms="true"
-                  :responsive="false"
-                  @layout-created="layoutCreatedEvent"
-                  @layout-before-mount="layoutBeforeMountEvent"
-                  @layout-mounted="layoutMountedEvent"
-                  @layout-ready="layoutReadyEvent"
-                  @layout-updated="layoutUpdatedEvent"
+                :class="['containerPrototype', { boxed: container.boxed }]"
+                :layout.sync="container.layoutT"
+                :col-num="parseInt(colNum)"
+                :row-height="rowHeight"
+                :is-draggable="true"
+                :is-resizable="false"
+                :is-mirrored="false"
+                :prevent-collision="false"
+                :vertical-compact="false"
+                :use-css-transforms="true"
+                :responsive="false"
+                @layout-created="layoutCreatedEvent"
+                @layout-before-mount="layoutBeforeMountEvent"
+                @layout-mounted="layoutMountedEvent"
+                @layout-ready="layoutReadyEvent"
+                @layout-updated="layoutUpdatedEvent"
               >
                 <grid-item
-                    class="GridItem"
-                    :style="computedItemStyle(item.i)"
-                    v-for="item in container.layoutT"
-                    :key="item.i"
-                    :static="item.static"
-                    :x="item.x"
-                    :y="item.y"
-                    :w="item.w"
-                    :h="item.h"
-                    :i="item.i"
-                    @resize="resize"
-                    @move="move"
-                    @resized="resized"
-                    @container-resized="containerResized"
-                    @moved="moved"
+                  v-for="item in container.layoutT"
+                  :key="item.i"
+                  class="GridItem"
+                  :style="computedItemStyle(item.i)"
+                  :static="item.static"
+                  :x="item.x"
+                  :y="item.y"
+                  :w="item.w"
+                  :h="item.h"
+                  :i="item.i"
+                  @resize="resize"
+                  @move="move"
+                  @resized="resized"
+                  @container-resized="containerResized"
+                  @moved="moved"
                 >
                   <button
-                      type="button"
-                      class="utilityCta"
-                      v-if="item.w!==12"
-                      @click="moreCols(item,'t')"
-                  >+
+                    v-if="item.w !== 12"
+                    type="button"
+                    class="utilityCta"
+                    @click="moreCols(item, 't')"
+                  >
+                    +
                   </button>
                   <button
-                      type="button"
-                      class="utilityCta"
-                      v-if="item.w!==1"
-                      @click="lessCols(item,'t')"
-                  >-
+                    v-if="item.w !== 1"
+                    type="button"
+                    class="utilityCta"
+                    @click="lessCols(item, 't')"
+                  >
+                    -
                   </button>
                 </grid-item>
               </grid-layout>
@@ -191,56 +197,58 @@
         <h3 class="layoutTitle">{{ i18n.layoutTitleS }}</h3>
         <div class="page">
           <header class="pageHeader">{{ i18n.pageHeader }}</header>
-          <template v-for="container in containers">
-            <div class="dropzone fakeDropzone">
+          <template v-for="(container, i) in containers">
+            <div :key="'SmallDropzone' + i" class="dropzone fakeDropzone">
               <grid-layout
-                  :class="['containerPrototype',{'boxed':container.boxed}]"
-                  :layout.sync="container.layoutS"
-                  :col-num="parseInt(colNum)"
-                  :row-height="rowHeight"
-                  :is-draggable="true"
-                  :is-resizable="false"
-                  :is-mirrored="false"
-                  :prevent-collision="false"
-                  :vertical-compact="false"
-                  :use-css-transforms="true"
-                  :responsive="false"
-                  @layout-created="layoutCreatedEvent"
-                  @layout-before-mount="layoutBeforeMountEvent"
-                  @layout-mounted="layoutMountedEvent"
-                  @layout-ready="layoutReadyEvent"
-                  @layout-updated="layoutUpdatedEvent"
+                :class="['containerPrototype', { boxed: container.boxed }]"
+                :layout.sync="container.layoutS"
+                :col-num="parseInt(colNum)"
+                :row-height="rowHeight"
+                :is-draggable="true"
+                :is-resizable="false"
+                :is-mirrored="false"
+                :prevent-collision="false"
+                :vertical-compact="false"
+                :use-css-transforms="true"
+                :responsive="false"
+                @layout-created="layoutCreatedEvent"
+                @layout-before-mount="layoutBeforeMountEvent"
+                @layout-mounted="layoutMountedEvent"
+                @layout-ready="layoutReadyEvent"
+                @layout-updated="layoutUpdatedEvent"
               >
                 <grid-item
-                    class="GridItem"
-                    :style="computedItemStyle(item.i)"
-                    v-for="item in container.layoutS"
-                    :key="item.i"
-                    :static="item.static"
-                    :x="item.x"
-                    :y="item.y"
-                    :w="item.w"
-                    :h="item.h"
-                    :i="item.i"
-                    @resize="resize"
-                    @move="move"
-                    @resized="resized"
-                    @container-resized="containerResized"
-                    @moved="moved"
+                  v-for="item in container.layoutS"
+                  :key="item.i"
+                  class="GridItem"
+                  :style="computedItemStyle(item.i)"
+                  :static="item.static"
+                  :x="item.x"
+                  :y="item.y"
+                  :w="item.w"
+                  :h="item.h"
+                  :i="item.i"
+                  @resize="resize"
+                  @move="move"
+                  @resized="resized"
+                  @container-resized="containerResized"
+                  @moved="moved"
                 >
                   <button
-                      type="button"
-                      class="utilityCta"
-                      v-if="item.w!==12"
-                      @click="moreCols(item,'s')"
-                  >+
+                    v-if="item.w !== 12"
+                    type="button"
+                    class="utilityCta"
+                    @click="moreCols(item, 's')"
+                  >
+                    +
                   </button>
                   <button
-                      type="button"
-                      class="utilityCta"
-                      v-if="item.w!==1"
-                      @click="lessCols(item,'s')"
-                  >-
+                    v-if="item.w !== 1"
+                    type="button"
+                    class="utilityCta"
+                    @click="lessCols(item, 's')"
+                  >
+                    -
                   </button>
                 </grid-item>
               </grid-layout>
@@ -253,103 +261,54 @@
     <div class="rowFlex">
       <div class="exampleContainer">
         <h3 class="colsTitle">{{ i18n.colsTitle }}</h3>
-        <drag
-            class="col col-1"
-            :transfer-data='1'
-        >
+        <drag class="col col-1" :transfer-data="1">
           <div class="brick">{{ i18n.colSmallPrefix }} 1</div>
         </drag>
-        <drag
-            class="col col-11"
-            :transfer-data='11'
-        >
+        <drag class="col col-11" :transfer-data="11">
           <div class="brick">{{ i18n.colBigPrefix }} 11</div>
         </drag>
-        <drag
-            class="col col-2"
-            :transfer-data='2'
-        >
+        <drag class="col col-2" :transfer-data="2">
           <div class="brick">{{ i18n.colBigPrefix }} 2</div>
         </drag>
-        <drag
-            class="col col-10"
-            :transfer-data='10'
-        >
+        <drag class="col col-10" :transfer-data="10">
           <div class="brick">{{ i18n.colBigPrefix }} 10</div>
         </drag>
-        <drag
-            class="col col-3"
-            :transfer-data='3'
-        >
+        <drag class="col col-3" :transfer-data="3">
           <div class="brick">{{ i18n.colBigPrefix }} 3</div>
         </drag>
-        <drag
-            class="col col-9"
-            :transfer-data='9'
-        >
+        <drag class="col col-9" :transfer-data="9">
           <div class="brick">{{ i18n.colBigPrefix }} 9</div>
         </drag>
-        <drag
-            class="col col-4"
-            :transfer-data='4'
-        >
+        <drag class="col col-4" :transfer-data="4">
           <div class="brick">{{ i18n.colBigPrefix }} 4</div>
         </drag>
-        <drag
-            class="col col-8"
-            :transfer-data='8'
-        >
+        <drag class="col col-8" :transfer-data="8">
           <div class="brick">{{ i18n.colBigPrefix }} 8</div>
         </drag>
-        <drag
-            class="col col-5"
-            :transfer-data='5'
-        >
+        <drag class="col col-5" :transfer-data="5">
           <div class="brick">{{ i18n.colBigPrefix }} 5</div>
         </drag>
-        <drag
-            class="col col-7"
-            :transfer-data='7'
-        >
+        <drag class="col col-7" :transfer-data="7">
           <div class="brick">{{ i18n.colBigPrefix }} 7</div>
         </drag>
-        <drag
-            class="col col-6"
-            :transfer-data='6'
-        >
+        <drag class="col col-6" :transfer-data="6">
           <div class="brick">{{ i18n.colBigPrefix }} 6</div>
         </drag>
-        <drag
-            class="col col-6"
-            :transfer-data='6'
-        >
+        <drag class="col col-6" :transfer-data="6">
           <div class="brick">{{ i18n.colBigPrefix }} 6</div>
         </drag>
-        <drag
-            class="col col-12"
-            :transfer-data='12'
-        >
+        <drag class="col col-12" :transfer-data="12">
           <div class="brick">{{ i18n.colBigPrefix }} 12</div>
         </drag>
       </div>
     </div>
     <div class="actionsWrapper">
-      <div
-          class="sameOrder ko"
-          v-if="!sameOrder"
-      >{{ i18n.errorCols }}
+      <div v-if="!sameOrder" class="sameOrder ko">{{ i18n.errorCols }}</div>
+      <div v-else-if="!hasCols" class="sameOrder ko">
+        {{ i18n.errorContainers }}
       </div>
-      <div
-          class="sameOrder ko"
-          v-else-if="!hasCols"
-      >{{ i18n.errorContainers }}
-      </div>
-      <button
-          v-else
-          type="button"
-          class="saveBtn"
-          @click.prevent="serialize"
-      >SALVA
+      <button v-else type="button" class="saveBtn" @click.prevent="serialize">
+        SALVA
       </button>
     </div>
   </div>
@@ -358,25 +317,17 @@
 <script>
 import GridItem from './components/GridItem.vue';
 import GridLayout from './components/GridLayout.vue';
-// import ResponsiveGridLayout from './components/ResponsiveGridLayout.vue';
-import TestElement from './components/TestElement.vue';
-import CustomDragElement from './components/CustomDragElement.vue';
 import { getDocumentDir, setDocumentDir } from './helpers/DOM';
-//var eventBus = require('./eventBus');
 import palette from 'google-palette';
 
 const blockHeightModule = 8;
 const seq = palette(['tol', 'qualitative', 'rainbow'], 40);
-//console.log(seq)
 
 export default {
   name: 'PageLayoutBuilder',
   components: {
-    // ResponsiveGridLayout,
     GridLayout,
     GridItem,
-    TestElement,
-    CustomDragElement
   },
   props: ['i18n'],
   data() {
@@ -396,73 +347,97 @@ export default {
       colNum: 12,
       index: 0,
       indexContainer: 0,
-      serializedJson: {}
+      serializedJson: {},
     };
   },
+  computed: {
+    sameOrder() {
+      return this.doAllContainersHasSameOrder();
+    },
+    hasCols() {
+      return this.containers.length && this.containers[0].layoutD.length;
+    },
+  },
   mounted: function () {
-    if (document.getElementById('json-data') && document.getElementById('json-data').value.length) {
+    if (
+      document.getElementById('json-data') &&
+      document.getElementById('json-data').value.length
+    ) {
       const data = JSON.parse(document.getElementById('json-data').value);
       this.containers = data;
     }
     if (window.CMS) {
-      window.CMS.$('form').off('submit.myWidgetNs').on('submit.myWidgetNs', e => {
-        if (!e.originalEvent.submitter.getAttribute('name') || e.originalEvent.submitter.getAttribute(
-            'name') !== 'wizard_goto_step') {
-          let savedHeight;
-          if (!this.sameOrder) {
-            e.preventDefault();
-            savedHeight = window.pageYOffset;
-            alert(this.i18n.errorCols);
-            if (window.parent && window.parent.CMS) {
-              setTimeout(() => {
-                window.parent.CMS.$('.cms-modal-frame iframe').css('display', 'block');
-                window.scrollTo(0, savedHeight);
-              }, 100);
+      window.CMS.$('form')
+        .off('submit.myWidgetNs')
+        .on('submit.myWidgetNs', (e) => {
+          if (
+            !e.originalEvent.submitter.getAttribute('name') ||
+            e.originalEvent.submitter.getAttribute('name') !==
+              'wizard_goto_step'
+          ) {
+            let savedHeight;
+            if (!this.sameOrder) {
+              e.preventDefault();
+              savedHeight = window.pageYOffset;
+              alert(this.i18n.errorCols);
+              if (window.parent && window.parent.CMS) {
+                setTimeout(() => {
+                  window.parent.CMS.$('.cms-modal-frame iframe').css(
+                    'display',
+                    'block'
+                  );
+                  window.scrollTo(0, savedHeight);
+                }, 100);
+              }
+            } else if (!this.hasCols) {
+              e.preventDefault();
+              savedHeight = window.pageYOffset;
+              alert(this.i18n.errorContainers);
+              if (window.parent && window.parent.CMS) {
+                setTimeout(() => {
+                  window.parent.CMS.$('.cms-modal-frame iframe').css(
+                    'display',
+                    'block'
+                  );
+                  window.scrollTo(0, savedHeight);
+                }, 100);
+              }
+            } else {
+              this.serialize();
             }
-          } else if (!this.hasCols) {
-            e.preventDefault();
-            savedHeight = window.pageYOffset;
-            alert(this.i18n.errorContainers);
-            if (window.parent && window.parent.CMS) {
-              setTimeout(() => {
-                window.parent.CMS.$('.cms-modal-frame iframe').css('display', 'block');
-                window.scrollTo(0, savedHeight);
-              }, 100);
-            }
-          } else {
-            this.serialize();
           }
-        }
-      });
+        });
     }
   },
   methods: {
     computedItemStyle(idx) {
       return {
-        backgroundColor: '#' + seq[idx]
+        backgroundColor: '#' + seq[idx],
       };
     },
     addBoxedContainer() {
       this.containers = [
-        ...this.containers, {
+        ...this.containers,
+        {
           indexContainer: this.indexContainer,
           boxed: true,
           layoutD: [],
           layoutT: [],
-          layoutS: []
-        }
+          layoutS: [],
+        },
       ];
       this.indexContainer++;
     },
     addFluidContainer() {
       this.containers = [
-        ...this.containers, {
+        ...this.containers,
+        {
           indexContainer: this.indexContainer,
           boxed: false,
           layoutD: [],
           layoutT: [],
-          layoutS: []
-        }
+          layoutS: [],
+        },
       ];
       this.indexContainer++;
     },
@@ -493,12 +468,12 @@ export default {
     },
     serialize() {
       //const grouped = this.groupBy(this.layoutD, col => col.y);
-      this.containers.forEach(container => {
-        console.log('container',container)
+      this.containers.forEach((container) => {
+        console.log('container', container);
         let cont = this.addContainer(container);
-        console.log(cont)
+        console.log(cont);
         let row = this.addRow(cont);
-        console.log(row)
+        console.log(row);
 
         let allItemsD = this.sortedCopyLayout(container.layoutD);
         let allItemsT = this.sortedCopyLayout(container.layoutT);
@@ -509,32 +484,36 @@ export default {
             d: d,
             t: allItemsT[idx],
             s: allItemsS[idx],
-            index: d.i
+            index: d.i,
           };
         });
 
         allItems.forEach((item, index) => {
           this.addCol(row, {
             item,
-            previous: allItems[index - 1]
+            previous: allItems[index - 1],
           });
         });
-        console.log(allItems)
+        console.log(allItems);
       });
 
-      console.log(this.containers)
+      console.log(this.containers);
 
       try {
         //
         if (document.querySelector('form .form-row.form_data textarea')) {
-          document.querySelector('form .form-row.form_data textarea').value = JSON.stringify(this.serializedJson);
+          document.querySelector('form .form-row.form_data textarea').value =
+            JSON.stringify(this.serializedJson);
         }
         if (document.querySelector('form .form-row.field-form_data textarea')) {
-          document.querySelector('form .form-row.field-form_data textarea').value = JSON.stringify(
-              this.serializedJson);
+          document.querySelector(
+            'form .form-row.field-form_data textarea'
+          ).value = JSON.stringify(this.serializedJson);
         }
         if (document.getElementById('json-data')) {
-          document.getElementById('json-data').value = JSON.stringify(this.containers);
+          document.getElementById('json-data').value = JSON.stringify(
+            this.containers
+          );
         }
       } catch (e) {
         console.log('CATCH');
@@ -555,41 +534,45 @@ export default {
     serializeContainer(options) {
       if (options.boxed) {
         return {
-          attrs: {variant_class: 'container'},
-          rows: []
+          attrs: { variant_class: 'container' },
+          rows: [],
         };
       } else {
         return {
-          attrs: {variant_class: 'container-fluid'},
-          rows: []
+          attrs: { variant_class: 'container-fluid' },
+          rows: [],
         };
       }
     },
     serializeRow(options) {
       return {
-        attrs: {variant_class: ''},
-        cols: []
+        attrs: { variant_class: '' },
+        cols: [],
       };
     },
     serializeCol(options) {
       let classes = {};
       if (options.item) {
-
         if (options.previous) {
-          Object.keys(options.item).forEach(key => {
+          Object.keys(options.item).forEach((key) => {
             const prefix = key === 'd' ? '-lg' : key === 't' ? '-md' : '';
             if (options.item[key].y === options.previous[key].y) {
-              if (options.item[key].x > options.previous[key].x + options.previous[key].w) {
+              if (
+                options.item[key].x >
+                options.previous[key].x + options.previous[key].w
+              ) {
                 classes = {
                   ...classes,
-                  [`offset_${prefix}`]: options.item[key].x - (options.previous[key].x + options.previous[key].w)
+                  [`offset_${prefix}`]:
+                    options.item[key].x -
+                    (options.previous[key].x + options.previous[key].w),
                 };
               }
             } else {
               if (options.item[key].x !== 0) {
                 classes = {
                   ...classes,
-                  [`offset_${prefix}`]: options.item[key].x
+                  [`offset_${prefix}`]: options.item[key].x,
                 };
               }
             }
@@ -600,13 +583,13 @@ export default {
           ...classes,
           cols_xs: options.item.s.w,
           cols_md: options.item.t.w,
-          cols_lg: options.item.d.w
+          cols_lg: options.item.d.w,
         };
       }
 
       return {
         name: options.item.d.i,
-        attrs: classes
+        attrs: classes,
       };
     },
     addCol(row, options) {
@@ -615,10 +598,7 @@ export default {
       if (!row.cols) {
         row.cols = [col];
       } else {
-        row.cols = [
-          ...row.cols,
-          col
-        ];
+        row.cols = [...row.cols, col];
       }
 
       return col;
@@ -629,10 +609,7 @@ export default {
       if (!container.rows) {
         container.rows = [row];
       } else {
-        container.rows = [
-          ...container.rows,
-          row
-        ];
+        container.rows = [...container.rows, row];
       }
 
       return row;
@@ -645,25 +622,34 @@ export default {
       } else {
         this.serializedJson.containers = [
           ...this.serializedJson.containers,
-          container
+          container,
         ];
       }
 
       return container;
     },
     sortedCopyLayout(layout) {
-      return layout.concat().sort((a, b) => {
-        return a.x - b.x;
-      }).sort((a, b) => {
-        return a.y - b.y;
-      });
+      return layout
+        .concat()
+        .sort((a, b) => {
+          return a.x - b.x;
+        })
+        .sort((a, b) => {
+          return a.y - b.y;
+        });
     },
     doAllContainersHasSameOrder() {
       //console.log('doAllContainersHasSameOrder')
       return this.containers.reduce((acc, curr) => {
-        const d = this.sortedCopyLayout(curr.layoutD).map(e => e.i).join('');
-        const t = this.sortedCopyLayout(curr.layoutT).map(e => e.i).join('');
-        const s = this.sortedCopyLayout(curr.layoutS).map(e => e.i).join('');
+        const d = this.sortedCopyLayout(curr.layoutD)
+          .map((e) => e.i)
+          .join('');
+        const t = this.sortedCopyLayout(curr.layoutT)
+          .map((e) => e.i)
+          .join('');
+        const s = this.sortedCopyLayout(curr.layoutS)
+          .map((e) => e.i)
+          .join('');
         return acc && d === t && t === s;
       }, true);
     },
@@ -671,17 +657,19 @@ export default {
       this.containers.splice(this.containers.indexOf(container), 1);
     },
     removeMe(item) {
-      let container = this.containers.find(o => o.indexContainer === item.indexContainer);
-      const elementToDeleteD = container.layoutD.find(o => o.i === item.i);
-      const elementToDeleteT = container.layoutT.find(o => o.i === item.i);
-      const elementToDeleteS = container.layoutS.find(o => o.i === item.i);
+      let container = this.containers.find(
+        (o) => o.indexContainer === item.indexContainer
+      );
+      const elementToDeleteD = container.layoutD.find((o) => o.i === item.i);
+      const elementToDeleteT = container.layoutT.find((o) => o.i === item.i);
+      const elementToDeleteS = container.layoutS.find((o) => o.i === item.i);
       container.layoutD.splice(container.layoutD.indexOf(elementToDeleteD), 1);
       container.layoutT.splice(container.layoutT.indexOf(elementToDeleteT), 1);
       container.layoutS.splice(container.layoutS.indexOf(elementToDeleteS), 1);
       this.refreshAll();
     },
     refreshAll(step) {
-      this.containers.forEach(container => {
+      this.containers.forEach((container) => {
         this.roundYToModule(container.layoutD);
         this.roundYToModule(container.layoutT);
         this.roundYToModule(container.layoutS);
@@ -721,12 +709,14 @@ export default {
 
       const getFirstAvailableXY = (rowIndex = 0) => {
         //console.log('getFirstAvailableXY')
-        const rowItems = container.layoutD.filter(block => block.y === rowIndex);
+        const rowItems = container.layoutD.filter(
+          (block) => block.y === rowIndex
+        );
         const firstAvailableX = getFirstAvailableX(rowItems);
         if (firstAvailableX < this.colNum) {
           return {
             x: firstAvailableX,
-            y: rowIndex
+            y: rowIndex,
           };
         } else {
           rowIndex = rowIndex + this.blocksHeight;
@@ -736,10 +726,10 @@ export default {
 
       const getXY = (itemWidth, rowIndex) => {
         //console.log('getXY')
-        let {x, y} = getFirstAvailableXY(rowIndex);
+        let { x, y } = getFirstAvailableXY(rowIndex);
 
-        if ((this.colNum - x - itemWidth) >= 0) {
-          return {x, y};
+        if (this.colNum - x - itemWidth >= 0) {
+          return { x, y };
         } else {
           rowIndex = rowIndex + this.blocksHeight;
           return getXY(itemWidth, rowIndex);
@@ -748,7 +738,7 @@ export default {
 
       const createItem = () => {
         //console.log('createItem')
-        const {x, y} = getXY(itemWidth, 0);
+        const { x, y } = getXY(itemWidth, 0);
 
         // return Object.assign({}, {
         //   "w":itemWidth,
@@ -758,32 +748,35 @@ export default {
         //   "i":this.index,
         // })
         console.log('container.indexContainer', container.indexContainer);
-        let obj = Object.assign({}, {
-          d: {
-            'w': itemWidth,
-            'h': this.blocksHeight,
-            'x': x, //computedX,
-            'y': y, //computedY,
-            'i': this.index,
-            'indexContainer': container.indexContainer
-          },
-          t: {
-            'w': itemWidth,
-            'h': this.blocksHeight,
-            'x': x, //computedX,
-            'y': y, //computedY,
-            'i': this.index,
-            'indexContainer': container.indexContainer
-          },
-          s: {
-            'w': itemWidth,
-            'h': this.blocksHeight,
-            'x': x, //computedX,
-            'y': y, //computedY,
-            'i': this.index,
-            'indexContainer': container.indexContainer
+        let obj = Object.assign(
+          {},
+          {
+            d: {
+              w: itemWidth,
+              h: this.blocksHeight,
+              x: x, //computedX,
+              y: y, //computedY,
+              i: this.index,
+              indexContainer: container.indexContainer,
+            },
+            t: {
+              w: itemWidth,
+              h: this.blocksHeight,
+              x: x, //computedX,
+              y: y, //computedY,
+              i: this.index,
+              indexContainer: container.indexContainer,
+            },
+            s: {
+              w: itemWidth,
+              h: this.blocksHeight,
+              x: x, //computedX,
+              y: y, //computedY,
+              i: this.index,
+              indexContainer: container.indexContainer,
+            },
           }
-        });
+        );
         obj.index = this.index;
 
         //obj.d.parentReference = obj
@@ -823,9 +816,7 @@ export default {
       });
       return map;
     },
-    resize: function (i, newH, newW, newHPx, newWPx) {
-
-    },
+    resize: function (i, newH, newW, newHPx, newWPx) {},
     moved: function (i, newX, newY) {
       //console.log("### MOVED i=" + i + ", X=" + newX + ", Y=" + newY);
       this.doAllContainersHasSameOrder();
@@ -875,7 +866,9 @@ export default {
       if (newY === 0) {
         return newY;
       } else {
-        if (newLayout.filter(item => item.y === newY - blockHeightModule).length) {
+        if (
+          newLayout.filter((item) => item.y === newY - blockHeightModule).length
+        ) {
           return newY;
         } else {
           return this.getMinimumY(newLayout, newY - blockHeightModule);
@@ -890,22 +883,14 @@ export default {
         if (el.y % blockHeightModule === 0) {
           newY = el.y;
         } else if (el.y % blockHeightModule > 2) {
-          newY = blockHeightModule * (Math.ceil(el.y / blockHeightModule));
+          newY = blockHeightModule * Math.ceil(el.y / blockHeightModule);
         } else {
-          newY = blockHeightModule * (Math.floor(el.y / blockHeightModule));
+          newY = blockHeightModule * Math.floor(el.y / blockHeightModule);
         }
         el.y = this.getMinimumY(newLayout, newY);
       });
-    }
-  },
-  computed: {
-    sameOrder() {
-      return this.doAllContainersHasSameOrder();
     },
-    hasCols() {
-      return this.containers.length && this.containers[0].layoutD.length;
-    }
-  }
+  },
 };
 </script>
 
@@ -936,7 +921,7 @@ export default {
     min-width: 26px;
     min-height: 26px;
     user-select: none;
-    transition: all .4s ease;
+    transition: all 0.4s ease;
     cursor: pointer;
 
     svg {
@@ -981,8 +966,8 @@ export default {
   .componentDescription {
     font-size: 18px;
     p {
-        padding-bottom: 10px;
-      }
+      padding-bottom: 10px;
+    }
   }
 
   .containersBtns {
@@ -1012,7 +997,9 @@ export default {
     }
   }
 
-  .layoutTitle, .buttonsTitle, .colsTitle {
+  .layoutTitle,
+  .buttonsTitle,
+  .colsTitle {
     text-align: left;
     background: none;
     color: black;
@@ -1080,7 +1067,7 @@ export default {
 
   .actionsWrapper {
     margin: 40px 0 0;
-    text-align: right
+    text-align: right;
   }
 
   .exampleContainer {
@@ -1207,7 +1194,7 @@ export default {
     line-height: 15px;
     font-size: 15px;
     user-select: none;
-    transition: all .4s ease;
+    transition: all 0.4s ease;
     cursor: pointer;
 
     &:hover {
@@ -1262,7 +1249,6 @@ export default {
   .rowFlex {
     display: flex;
     flex-flow: row nowrap;
-
   }
 
   .space {
