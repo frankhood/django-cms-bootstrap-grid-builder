@@ -1,17 +1,115 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
+    // browser: true,
+    // commonjs: true,
+    // es6: true
   },
-  'extends': [
-    'plugin:vue/essential',
-    'eslint:recommended'
-  ],
-  rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
-  },
+  extends: ['plugin:vue/essential', 'eslint:recommended', '@vue/prettier'],
   parserOptions: {
-    parser: 'babel-eslint'
-  }
-}
+    parser: 'babel-eslint',
+  },
+  rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-unused-vars': 'off',
+    'vue/padding-line-between-blocks': ['error', 'always'],
+    'vue/attribute-hyphenation': [
+      'error',
+      'always',
+      {
+        ignore: [],
+      },
+    ],
+    'vue/component-definition-name-casing': ['error', 'PascalCase'],
+    'vue/no-template-shadow': 'error',
+    'vue/one-component-per-file': 'error',
+    'vue/prop-name-casing': ['error', 'camelCase'],
+    'vue/v-bind-style': ['error', 'shorthand'],
+    'vue/v-on-style': ['error', 'shorthand'],
+    'vue/attributes-order': [
+      'error',
+      {
+        order: [
+          'DEFINITION',
+          'LIST_RENDERING',
+          'CONDITIONALS',
+          'RENDER_MODIFIERS',
+          'GLOBAL',
+          ['UNIQUE', 'SLOT'],
+          'TWO_WAY_BINDING',
+          'OTHER_DIRECTIVES',
+          'OTHER_ATTR',
+          'EVENTS',
+          'CONTENT',
+        ],
+        alphabetical: false,
+      },
+    ],
+    'vue/component-tags-order': [
+      'error',
+      {
+        order: ['template', 'script', 'style'],
+      },
+    ],
+    'vue/order-in-components': [
+      'error',
+      {
+        order: [
+          'el',
+          'name',
+          'key',
+          'parent',
+          'functional',
+          ['delimiters', 'comments'],
+          ['components', 'directives', 'filters'],
+          'extends',
+          'mixins',
+          ['provide', 'inject'],
+          'ROUTER_GUARDS',
+          'layout',
+          'middleware',
+          'validate',
+          'scrollToTop',
+          'transition',
+          'loading',
+          'inheritAttrs',
+          'model',
+          ['props', 'propsData'],
+          'emits',
+          'setup',
+          'asyncData',
+          'data',
+          'fetch',
+          'head',
+          'computed',
+          'watch',
+          'watchQuery',
+          'LIFECYCLE_HOOKS',
+          'methods',
+          ['template', 'render'],
+          'renderError',
+        ],
+      },
+    ],
+    'vue/this-in-template': ['error', 'never'],
+    'vue/component-name-in-template-casing': [
+      'error',
+      'kebab-case',
+      {
+        registeredComponentsOnly: true,
+        ignores: [],
+      },
+    ],
+    'vue/match-component-file-name': [
+      'error',
+      {
+        extensions: ['vue'],
+        shouldMatchCase: false,
+      },
+    ],
+    'vue/no-multiple-objects-in-class': 'error',
+  },
+};
+

@@ -1,24 +1,22 @@
-import Vue from 'vue'
-import PageLayoutBuilder from './page-layout-builder.vue'
+import Vue from 'vue';
+import PageLayoutBuilder from './page-layout-builder.vue';
 
 import { Drag, Drop } from 'vue-drag-drop';
 
-Vue.component('drag', Drag);
-Vue.component('drop', Drop);
+Vue.component('Drag', Drag);
+Vue.component('Drop', Drop);
 
-function cb(){
+function cb() {
   const VueVM = new Vue({
     el: '#builderApp',
-    components:{
-      PageLayoutBuilder
-    }
+    components: {
+      PageLayoutBuilder,
+    },
   });
-
 }
 
-if (document.readyState != 'loading'){
-  cb()
+if (document.readyState != 'loading') {
+  cb();
 } else {
   document.addEventListener('DOMContentLoaded', cb);
 }
-
