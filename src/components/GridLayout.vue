@@ -258,7 +258,6 @@ export default {
     layoutUpdate() {
       if (this.layout !== undefined && this.originalLayout !== null) {
         if (this.layout.length !== this.originalLayout.length) {
-
           let diff = this.findDifference(this.layout, this.originalLayout);
           if (diff.length > 0) {
             if (this.layout.length > this.originalLayout.length) {
