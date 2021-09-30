@@ -627,22 +627,6 @@ export default {
     handleDrop(data, event, container) {
       this.addItem(data, container);
     },
-    clicked: function () {
-      window.alert('CLICK!');
-    },
-    increaseWidth: function () {
-      let width = document.getElementById('content').offsetWidth;
-      width += 20;
-      document.getElementById('content').style.width = width + 'px';
-    },
-    decreaseWidth: function () {
-      let width = document.getElementById('content').offsetWidth;
-      width -= 20;
-      document.getElementById('content').style.width = width + 'px';
-    },
-    removeItem: function (item) {
-      this.layout.splice(this.layout.indexOf(item), 1);
-    },
     addItem: function (itemWidth, container) {
       const getFirstAvailableX = (rowItems) => {
         return rowItems.reduce((acc, curr) => acc + curr.w, 0);
@@ -718,35 +702,12 @@ export default {
       container.layoutS = [...container.layoutS, item.s];
       return item;
     },
-    groupBy(list, keyGetter) {
-      const map = new Map();
-      list.forEach((item) => {
-        const key = keyGetter(item);
-        const collection = map.get(key);
-        if (!collection) {
-          map.set(key, [item]);
-        } else {
-          collection.push(item);
-        }
-      });
-      return map;
-    },
     resize: function (i, newH, newW, newHPx, newWPx) {},
     moved: function (i, newX, newY) {
       this.doAllContainersHasSameOrder();
     },
     triggerResize() {
       window.dispatchEvent(new Event('resize'));
-    },
-    changeDirection() {
-      let documentDirection = getDocumentDir();
-      let toggle = '';
-      if (documentDirection === 'rtl') {
-        toggle = 'ltr';
-      } else {
-        toggle = 'rtl';
-      }
-      setDocumentDir(toggle);
     },
     layoutUpdatedEvent: function (newLayout) {
       this.refreshAll();
