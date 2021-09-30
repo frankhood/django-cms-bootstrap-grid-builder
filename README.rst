@@ -175,6 +175,7 @@ element-resize-detector: https://github.com/wnr/element-resize-detector
 interactjs: https://interactjs.io/
 vue-drag-drop: https://github.com/cameronhimself/vue-drag-drop
 google-palette: https://github.com/google/palette.js/tree/master
+bootstrap: https://github.com/twbs/bootstrap
 
 **Browser Compatibility**
 
