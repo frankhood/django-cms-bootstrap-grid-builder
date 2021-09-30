@@ -171,52 +171,52 @@ throughout an intuitive interface and draggable elements
 
 **This project uses**
 
-element-resize-detector: https://github.com/wnr/element-resize-detector
-interactjs: https://interactjs.io/
-vue-drag-drop: https://github.com/cameronhimself/vue-drag-drop
-google-palette: https://github.com/google/palette.js/tree/master
-bootstrap: https://github.com/twbs/bootstrap
+| element-resize-detector: https://github.com/wnr/element-resize-detector
+| interactjs: https://interactjs.io/
+| vue-drag-drop: https://github.com/cameronhimself/vue-drag-drop
+| google-palette: https://github.com/google/palette.js/tree/master
+| bootstrap: https://github.com/twbs/bootstrap
 
 **Browser Compatibility**
 
-this package JS compiled dist has full support of ES5.
-check it with npx es-check es5 ./bootstrap_grid_builder/static/cms_plugin_structure/dist/js/*.js --verbose
+|this package JS compiled dist has full support of ES5.
+|check it with npx es-check es5 ./bootstrap_grid_builder/static/cms_plugin_structure/dist/js/*.js --verbose
 
 **Frontend source folder ascii tree**
 
-/django-cms-bootstrap-grid-builder/src
-├─ main.js
-├─ page-layout-builder.vue
-├─ assets
-│  └─ logo.png
-├─ components
-│  ├─ CustomDragElement.vue
-│  ├─ GridItem.vue
-│  ├─ GridLayout.vue
-│  └─ index.js
-└─ helpers
-   ├─ DOM.js
-   ├─ draggableUtils.js
-   ├─ responsiveUtils.js
-   └─ utils.js
+| /django-cms-bootstrap-grid-builder/src
+| ├─ main.js
+| ├─ page-layout-builder.vue
+| ├─ assets
+| │  └─ logo.png
+| ├─ components
+| │  ├─ CustomDragElement.vue
+| │  ├─ GridItem.vue
+| │  ├─ GridLayout.vue
+| │  └─ index.js
+| └─ helpers
+|    ├─ DOM.js
+|    ├─ draggableUtils.js
+|    ├─ responsiveUtils.js
+|    └─ utils.js
 
 **How it works**
 
-The informations obtained from the interface configuration
-are serialized into a JSON object and sent to the backend
-wich replicates the desired grid structure with Django plugins templates
+| The informations obtained from the interface configuration
+| are serialized into a JSON object and sent to the backend
+| wich replicates the desired grid structure with Django plugins templates
 
 
 **Contribution guide**
 
-Pull requests:
-
-Fork the repo and create your branch from develop.
-If you've added code that should be tested, add tests.
-If you've changed APIs, update the documentation.
-Ensure the code is documented, use comments where needed.
-Remember to build and include buid files in your commit.
-Make sure your code lints, run yarn lint to unify code style.
+| Pull requests:
+| 
+| Fork the repo and create your branch from develop.
+| If you've added code that should be tested, add tests.
+| If you've changed APIs, update the documentation.
+| Ensure the code is documented, use comments where needed.
+| Remember to build and include buid files in your commit.
+| Make sure your code lints, run yarn lint to unify code style.
 
 
 
