@@ -225,12 +225,12 @@ Fontend
 
   Pull requests:
   
-  Fork the repo and create your branch from develop.
-  If you've added code that should be tested, add tests.
-  If you've changed APIs, update the documentation.
-  Ensure the code is documented, use comments where needed.
-  Remember to build and include buid files in your commit.
-  Make sure your code lints, run yarn lint to unify code style.
+  - Fork the repo and create your branch from develop.
+  - If you've added code that should be tested, add tests.
+  - If you've changed APIs, update the documentation.
+  - Ensure the code is documented, use comments where needed.
+  - Remember to build and include buid files in your commit.
+  - Make sure your code lints, run yarn lint to unify code style.
 
 
 
