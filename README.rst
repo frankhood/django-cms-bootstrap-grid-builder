@@ -176,29 +176,32 @@ throughout an intuitive interface and draggable elements
 | vue-drag-drop: https://github.com/cameronhimself/vue-drag-drop
 | google-palette: https://github.com/google/palette.js/tree/master
 | bootstrap: https://github.com/twbs/bootstrap
-
+|
+|
 **Browser Compatibility**
-
+|
 |this package JS compiled dist has full support of ES5.
 |check it with npx es-check es5 ./bootstrap_grid_builder/static/cms_plugin_structure/dist/js/*.js --verbose
-
+|
+|
 **Frontend source folder ascii tree**
+::
 
-| /django-cms-bootstrap-grid-builder/src
-| ├─ main.js
-| ├─ page-layout-builder.vue
-| ├─ assets
-| │  └─ logo.png
-| ├─ components
-| │  ├─ CustomDragElement.vue
-| │  ├─ GridItem.vue
-| │  ├─ GridLayout.vue
-| │  └─ index.js
-| └─ helpers
-|    ├─ DOM.js
-|    ├─ draggableUtils.js
-|    ├─ responsiveUtils.js
-|    └─ utils.js
+  /django-cms-bootstrap-grid-builder/src
+  ├─ main.js
+  ├─ page-layout-builder.vue
+  ├─ assets
+  │  └─ logo.png
+  ├─ components
+  │  ├─ CustomDragElement.vue
+  │  ├─ GridItem.vue
+  │  ├─ GridLayout.vue
+  │  └─ index.js
+  └─ helpers
+     ├─ DOM.js
+     ├─ draggableUtils.js
+     ├─ responsiveUtils.js
+     └─ utils.js
 
 **How it works**
 
