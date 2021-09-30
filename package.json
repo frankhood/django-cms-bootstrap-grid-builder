@@ -22,8 +22,6 @@
     "url": "https://github.com/frankhood/django-cms-bootstrap-grid-builder.git"
   },
   "author": "Frankhood s.r.l. <info@frankhood.it> (https://www.frankhood.it/)",
-  "main": "dist/vue-grid-layout.common.js",
-  "unpkg": "dist/vue-grid-layout.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve ./src/index.js",
     "build": "rimraf ./bootstrap_grid_builder/static/cms_plugin_structure/dist && vue-cli-service build --dest ./bootstrap_grid_builder/static/cms_plugin_structure/dist",

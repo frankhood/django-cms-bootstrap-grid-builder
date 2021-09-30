@@ -163,41 +163,52 @@ After model creation run makemigration & migrate to create yours models in datab
     $ python manage.py migrate
 
 
-Frontend with VUE.js Development guide
---------------------------------------
+Fontend
+-------
 
-At ``django-cms-bootstrap-grid-builder/src`` are located all the vue files of the project
-Once built, the dist will be located at ``django-cms-bootstrap-grid-builder/bootstrap_grid_builder/static/cms_plugin_structure/dist``
+This is a Vue.js application for creating custom bootstrap grids
+throughout an intuitive interface and draggable elements
 
-**JSON Serialization**
+**This project uses**
 
-The serialization logic that produces the final JSON for the back-end is implemented in ``django-cms-bootstrap-grid-builder/src/page-layout-builder.vue``
+element-resize-detector: https://github.com/wnr/element-resize-detector
+interactjs: https://interactjs.io/
+vue-drag-drop: https://github.com/cameronhimself/vue-drag-drop
+google-palette: https://github.com/google/palette.js/tree/master
 
-**Grid elements templates**
+**Browser Compatibility**
 
-The templates for each layout element are stored at the following path ``django-cms-bootstrap-grid-builder/bootstrap_grid_builder/templates/configurable_grid``
+this package JS compiled dist has full support of ES5.
+check it with npx es-check es5 ./bootstrap_grid_builder/static/cms_plugin_structure/dist/js/*.js --verbose
 
-**Visible debug elements**
+**Frontend source folder ascii tree**
 
-Once the grid is created all the elements are empty, and so not visible.
-To have faster debug sessions, and a visible feedback, change temporarily the template files adding styles accordigly.
-It might be usefult to remove the 'template' tags in order to force the child plugin rendering.
+/django-cms-bootstrap-grid-builder/src
+├─ main.js
+├─ page-layout-builder.vue
+├─ assets
+│  └─ logo.png
+├─ components
+│  ├─ CustomDragElement.vue
+│  ├─ GridItem.vue
+│  ├─ GridLayout.vue
+│  └─ index.js
+└─ helpers
+   ├─ DOM.js
+   ├─ draggableUtils.js
+   ├─ responsiveUtils.js
+   └─ utils.js
 
-Below theres an example of debug styles applied to templates
+**How it works**
 
-.. code-block:: html
+The informations obtained from the interface configuration
+are serialized into a JSON object and sent to the backend
+wich replicates the desired grid structure with Django plugins templates
 
-    <!-- configurable_grid.html --!>
-    style="display: block;position: absolute;padding: 10px;border: 1px solid black; background-color: rgba(150,150,150,0.2);min-height: 100px;"
 
-    <!-- grid_column.html --!>
-    style="display: inline-block;position: relative;padding: 10px;border: 1px solid black; background-color: rgba(150,150,150,0.2);min-height: 100px;"
+**Contribution guide**
 
-    <!-- grid_container.html --!>
-    style="display: block;position: relative;padding: 10px;border: 1px solid black; background-color: rgba(150,150,150,0.2);min-height: 100px;"
 
-    <!-- grid_row.html --!>
-    style="display: block;position: relative;padding: 10px;border: 1px solid black; background-color: rgba(150,150,150,0.2);min-height: 100px;"
 
 
 Running Tests
