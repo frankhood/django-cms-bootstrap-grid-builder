@@ -808,7 +808,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .vue-grid-item {
   transition: all 200ms ease;
   transition-property: left, top, right;

@@ -743,7 +743,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #plbSpecificity {
   button {
     outline: 0;

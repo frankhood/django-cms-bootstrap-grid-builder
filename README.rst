@@ -243,7 +243,8 @@ Development commands
     
     # Front-end
     $ yarn install
-    $ yarn build (dist is at django-cms-bootstrap-grid-builder/bootstrap_grid_builder/static/cms_plugin_structure/dist)
+    $ yarn serve (lauches local live reloading server)
+    $ yarn build (creates dist at django-cms-bootstrap-grid-builder/bootstrap_grid_builder/static/cms_plugin_structure/dist)
 
 
 Credits

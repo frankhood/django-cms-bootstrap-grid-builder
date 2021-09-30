@@ -465,7 +465,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .vue-grid-layout {
   position: relative;
   transition: height 200ms ease;
