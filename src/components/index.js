@@ -7,8 +7,6 @@ const VueGridLayout = {
   GridItem,
 };
 
-// module.exports = VueGridLayout;
-
 Object.keys(VueGridLayout).forEach((name) => {
   Vue.component(name, VueGridLayout[name]);
 });

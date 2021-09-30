@@ -6,7 +6,6 @@
       ref="handle"
       :class="resizableHandleClass"
     ></span>
-    <!--<span v-if="draggable" ref="dragHandle" class="vue-draggable-handle"></span>-->
   </div>
 </template>
 
