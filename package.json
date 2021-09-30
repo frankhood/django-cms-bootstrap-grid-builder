@@ -1,6 +1,6 @@
 {
   "name": "django-cms-bootstrap-grid-builder",
-  "version": "1.0",
+  "version": "2.3.7",
   "description": "A Django cms plugin to build custom bootstrap grids.",
   "keywords": [
     "django",
