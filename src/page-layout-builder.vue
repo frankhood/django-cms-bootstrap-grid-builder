@@ -45,10 +45,6 @@
                 :vertical-compact="false"
                 :use-css-transforms="true"
                 :responsive="false"
-                @layout-created="layoutCreatedEvent"
-                @layout-before-mount="layoutBeforeMountEvent"
-                @layout-mounted="layoutMountedEvent"
-                @layout-ready="layoutReadyEvent"
                 @layout-updated="layoutUpdatedEvent"
               >
                 <grid-item
@@ -63,9 +59,6 @@
                   :h="item.h"
                   :i="item.i"
                   @resize="resize"
-                  @move="move"
-                  @resized="resized"
-                  @container-resized="containerResized"
                   @moved="moved"
                 >
                   <button
@@ -146,10 +139,6 @@
                 :vertical-compact="false"
                 :use-css-transforms="true"
                 :responsive="false"
-                @layout-created="layoutCreatedEvent"
-                @layout-before-mount="layoutBeforeMountEvent"
-                @layout-mounted="layoutMountedEvent"
-                @layout-ready="layoutReadyEvent"
                 @layout-updated="layoutUpdatedEvent"
               >
                 <grid-item
@@ -164,9 +153,6 @@
                   :h="item.h"
                   :i="item.i"
                   @resize="resize"
-                  @move="move"
-                  @resized="resized"
-                  @container-resized="containerResized"
                   @moved="moved"
                 >
                   <button
@@ -211,10 +197,6 @@
                 :vertical-compact="false"
                 :use-css-transforms="true"
                 :responsive="false"
-                @layout-created="layoutCreatedEvent"
-                @layout-before-mount="layoutBeforeMountEvent"
-                @layout-mounted="layoutMountedEvent"
-                @layout-ready="layoutReadyEvent"
                 @layout-updated="layoutUpdatedEvent"
               >
                 <grid-item
@@ -229,9 +211,6 @@
                   :h="item.h"
                   :i="item.i"
                   @resize="resize"
-                  @move="move"
-                  @resized="resized"
-                  @container-resized="containerResized"
                   @moved="moved"
                 >
                   <button

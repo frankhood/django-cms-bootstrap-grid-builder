@@ -25,6 +25,7 @@
   "main": "dist/vue-grid-layout.common.js",
   "unpkg": "dist/vue-grid-layout.umd.min.js",
   "scripts": {
+    "serve": "vue-cli-service serve ./src/index.js",
     "build": "rimraf ./bootstrap_grid_builder/static/cms_plugin_structure/dist && vue-cli-service build --dest ./bootstrap_grid_builder/static/cms_plugin_structure/dist",
     "lint": "vue-cli-service lint --fix --ext .js,.vue ./src && prettier --write ./src"
   },
@@ -35,6 +36,7 @@
     "vue-drag-drop": "^1.1.4"
   },
   "devDependencies": {
+    "bootstrap": "^5.1.1",
     "@babel/core": "^7.14.3",
     "@babel/plugin-proposal-throw-expressions": "^7.14.5",
     "@vue/cli-plugin-babel": "^3.4.1",
