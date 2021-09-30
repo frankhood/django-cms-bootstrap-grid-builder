@@ -441,16 +441,6 @@ export default {
       ];
       this.indexContainer++;
     },
-    // setBackgrounds(){
-    //   this.$nextTick(()=>{
-    //     Array.from(this.$refs.ld.$el.querySelectorAll(".GridItem")).forEach((el,idx)=>el.style.backgroundColor = '#'+seq[idx]);
-    //     Array.from(this.$refs.ls.$el.querySelectorAll(".GridItem")).forEach((el,idx)=>el.style.backgroundColor = '#'+seq[idx]);
-    //     Array.from(this.$refs.lt.$el.querySelectorAll(".GridItem")).forEach((el,idx)=>el.style.backgroundColor = '#'+seq[idx]);
-    //   })
-    //   // :style="`background:${seq[item.i]}`"
-    //   // :style="`background:${seq[item.i]}`"
-    //   // :style="`background:${seq[item.i]}`"
-    // },
     adjustY(item) {
       if (item.w + item.x > this.colNum) {
         item.y = item.y + this.rowHeight;
@@ -467,13 +457,9 @@ export default {
       this.refreshAll();
     },
     serialize() {
-      //const grouped = this.groupBy(this.layoutD, col => col.y);
       this.containers.forEach((container) => {
-        console.log('container', container);
         let cont = this.addContainer(container);
-        console.log(cont);
         let row = this.addRow(cont);
-        console.log(row);
 
         let allItemsD = this.sortedCopyLayout(container.layoutD);
         let allItemsT = this.sortedCopyLayout(container.layoutT);
@@ -494,13 +480,9 @@ export default {
             previous: allItems[index - 1],
           });
         });
-        console.log(allItems);
       });
 
-      console.log(this.containers);
-
       try {
-        //
         if (document.querySelector('form .form-row.form_data textarea')) {
           document.querySelector('form .form-row.form_data textarea').value =
             JSON.stringify(this.serializedJson);
@@ -516,20 +498,8 @@ export default {
           );
         }
       } catch (e) {
-        console.log('CATCH');
+        console.error(e);
       }
-
-      console.log(JSON.stringify(this.serializedJson));
-      //if(document.querySelector('form .form-row.form_data textarea')){
-
-      //console.log(JSON.stringify(this.serializedJson))
-      //window.parent.CMS.$('.cms-modal-buttons .cms-btn-action:first').trigger('click');
-      //window.parent.CMS.$('.cms-modal-buttons').css('display','block');
-      //}
-
-      // this.layoutS.forEach()
-      // let row = this.addRow(cont);
-      // //console.log('grouped',grouped)
     },
     serializeContainer(options) {
       if (options.boxed) {
@@ -639,7 +609,6 @@ export default {
         });
     },
     doAllContainersHasSameOrder() {
-      //console.log('doAllContainersHasSameOrder')
       return this.containers.reduce((acc, curr) => {
         const d = this.sortedCopyLayout(curr.layoutD)
           .map((e) => e.i)
@@ -674,7 +643,6 @@ export default {
         this.roundYToModule(container.layoutT);
         this.roundYToModule(container.layoutS);
       });
-      //this.setBackgrounds();
       this.triggerResize();
     },
     handleDrop(data, event, container) {
@@ -694,21 +662,14 @@ export default {
       document.getElementById('content').style.width = width + 'px';
     },
     removeItem: function (item) {
-      ////console.log("### REMOVE " + item.i);
       this.layout.splice(this.layout.indexOf(item), 1);
     },
     addItem: function (itemWidth, container) {
-      // let self = this;
-      ////console.log("### LENGTH: " + this.layout.length);
-      ////console.log('itemWidth',itemWidth)
-
       const getFirstAvailableX = (rowItems) => {
-        //console.log('getFirstAvailableX')
         return rowItems.reduce((acc, curr) => acc + curr.w, 0);
       };
 
       const getFirstAvailableXY = (rowIndex = 0) => {
-        //console.log('getFirstAvailableXY')
         const rowItems = container.layoutD.filter(
           (block) => block.y === rowIndex
         );
@@ -725,7 +686,6 @@ export default {
       };
 
       const getXY = (itemWidth, rowIndex) => {
-        //console.log('getXY')
         let { x, y } = getFirstAvailableXY(rowIndex);
 
         if (this.colNum - x - itemWidth >= 0) {
@@ -737,52 +697,37 @@ export default {
       };
 
       const createItem = () => {
-        //console.log('createItem')
         const { x, y } = getXY(itemWidth, 0);
-
-        // return Object.assign({}, {
-        //   "w":itemWidth,
-        //   "h":this.blocksHeight,
-        //   "x":x,//computedX,
-        //   "y":y,//computedY,
-        //   "i":this.index,
-        // })
-        console.log('container.indexContainer', container.indexContainer);
         let obj = Object.assign(
           {},
           {
             d: {
               w: itemWidth,
               h: this.blocksHeight,
-              x: x, //computedX,
-              y: y, //computedY,
+              x: x,
+              y: y,
               i: this.index,
               indexContainer: container.indexContainer,
             },
             t: {
               w: itemWidth,
               h: this.blocksHeight,
-              x: x, //computedX,
-              y: y, //computedY,
+              x: x,
+              y: y,
               i: this.index,
               indexContainer: container.indexContainer,
             },
             s: {
               w: itemWidth,
               h: this.blocksHeight,
-              x: x, //computedX,
-              y: y, //computedY,
+              x: x,
+              y: y,
               i: this.index,
               indexContainer: container.indexContainer,
             },
           }
         );
         obj.index = this.index;
-
-        //obj.d.parentReference = obj
-        //obj.t.parentReference = obj
-        //obj.s.parentReference = obj
-
         return obj;
       };
 
@@ -790,18 +735,9 @@ export default {
 
       this.index++;
       container.layoutD = [...container.layoutD, item.d];
-      //const itemT = JSON.parse(JSON.stringify(item))
-      //const itemS = JSON.parse(JSON.stringify(item))
-      //item.itemT = itemT;
-      //item.itemS = itemS;
       container.layoutT = [...container.layoutT, item.t];
       container.layoutS = [...container.layoutS, item.s];
-      //this.setBackgrounds();
       return item;
-    },
-    move: function (i, newX, newY) {
-      //const el = this.layoutD.find(el=>el.i===i);
-      //this.lastMovedBlock = el;
     },
     groupBy(list, keyGetter) {
       const map = new Map();
@@ -818,24 +754,12 @@ export default {
     },
     resize: function (i, newH, newW, newHPx, newWPx) {},
     moved: function (i, newX, newY) {
-      //console.log("### MOVED i=" + i + ", X=" + newX + ", Y=" + newY);
       this.doAllContainersHasSameOrder();
     },
-    resized: function (i, newH, newW, newHPx, newWPx) {
-      //console.log("### RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
-    },
-    containerResized: function (i, newH, newW, newHPx, newWPx) {
-      //console.log("### CONTAINER RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
-    },
     triggerResize() {
-      //to improve
       window.dispatchEvent(new Event('resize'));
     },
-    /**
-     * Add change direction button
-     */
     changeDirection() {
-      //console.log('changeDirection')
       let documentDirection = getDocumentDir();
       let toggle = '';
       if (documentDirection === 'rtl') {
@@ -844,25 +768,11 @@ export default {
         toggle = 'rtl';
       }
       setDocumentDir(toggle);
-      //eventBus.$emit('directionchange');
-    },
-    layoutCreatedEvent: function (newLayout) {
-      //console.log("Created layout: ", newLayout)
-    },
-    layoutBeforeMountEvent: function (newLayout) {
-      //console.log("beforeMount layout: ", newLayout)
-    },
-    layoutMountedEvent: function (newLayout) {
-      //console.log("Mounted layout: ", newLayout)
-    },
-    layoutReadyEvent: function (newLayout) {
-      //console.log("Ready layout: ", newLayout)
     },
     layoutUpdatedEvent: function (newLayout) {
       this.refreshAll();
     },
     getMinimumY(newLayout, newY) {
-      //console.log('getMinimumY')
       if (newY === 0) {
         return newY;
       } else {
@@ -876,9 +786,7 @@ export default {
       }
     },
     roundYToModule(newLayout) {
-      //console.log('roundYToModule')
       newLayout.forEach((el) => {
-        //const el = this.lastMovedBlock;
         let newY = 0;
         if (el.y % blockHeightModule === 0) {
           newY = el.y;

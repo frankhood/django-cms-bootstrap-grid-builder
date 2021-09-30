@@ -17,15 +17,6 @@ export type LayoutItem = LayoutItemRequired & {
   isResizable?: ?boolean,
 };
 export type Layout = Array<LayoutItem>;
-// export type Position = {left: number, top: number, width: number, height: number};
-/*
-export type DragCallbackData = {
-  node: HTMLElement,
-  x: number, y: number,
-  deltaX: number, deltaY: number,
-  lastX: number, lastY: number
-};
-*/
 // export type DragEvent = {e: Event} & DragCallbackData;
 export type Size = { width: number, height: number };
 // export type ResizeEvent = {e: Event, node: HTMLElement, size: Size};
@@ -57,13 +48,6 @@ export function cloneLayout(layout: Layout): Layout {
 
 // Fast path to cloning, since this is monomorphic
 export function cloneLayoutItem(layoutItem: LayoutItem): LayoutItem {
-  /*return {
-    w: layoutItem.w, h: layoutItem.h, x: layoutItem.x, y: layoutItem.y, i: layoutItem.i,
-    minW: layoutItem.minW, maxW: layoutItem.maxW, minH: layoutItem.minH, maxH: layoutItem.maxH,
-    moved: Boolean(layoutItem.moved), static: Boolean(layoutItem.static),
-    // These can be null
-    isDraggable: layoutItem.isDraggable, isResizable: layoutItem.isResizable
-  };*/
   return JSON.parse(JSON.stringify(layoutItem));
 }
 
@@ -272,7 +256,6 @@ export function moveElement(
   // Move each item that collides away from this element.
   for (let i = 0, len = collisions.length; i < len; i++) {
     const collision = collisions[i];
-    // console.log('resolving collision between', l.i, 'at', l.y, 'and', collision.i, 'at', collision.y);
 
     // Short circuit so we can't infinite loop
     if (collision.moved) continue;
@@ -435,66 +418,6 @@ export function sortLayoutItemsByRowCol(layout: Layout): Layout {
 }
 
 /**
- * Generate a layout using the initialLayout and children as a template.
- * Missing entries will be added, extraneous ones will be truncated.
- *
- * @param  {Array}  initialLayout Layout passed in through props.
- * @param  {String} breakpoint    Current responsive breakpoint.
- * @param  {Boolean} verticalCompact Whether or not to compact the layout vertically.
- * @return {Array}                Working layout.
- */
-/*
-export function synchronizeLayoutWithChildren(initialLayout: Layout, children: Array<React.Element>|React.Element,
-                                              cols: number, verticalCompact: boolean): Layout {
-  // ensure 'children' is always an array
-  if (!Array.isArray(children)) {
-    children = [children];
-  }
-  initialLayout = initialLayout || [];
-
-  // Generate one layout item per child.
-  let layout: Layout = [];
-  for (let i = 0, len = children.length; i < len; i++) {
-    let newItem;
-    const child = children[i];
-
-    // Don't overwrite if it already exists.
-    const exists = getLayoutItem(initialLayout, child.key || "1" /!* FIXME satisfies Flow *!/);
-    if (exists) {
-      newItem = exists;
-    } else {
-      const g = child.props._grid;
-
-      // Hey, this item has a _grid property, use it.
-      if (g) {
-        if (!isProduction) {
-          validateLayout([g], 'ReactGridLayout.children');
-        }
-        // Validated; add it to the layout. Bottom 'y' possible is the bottom of the layout.
-        // This allows you to do nice stuff like specify {y: Infinity}
-        if (verticalCompact) {
-          newItem = cloneLayoutItem({...g, y: Math.min(bottom(layout), g.y), i: child.key});
-        } else {
-          newItem = cloneLayoutItem({...g, y: g.y, i: child.key});
-        }
-      }
-      // Nothing provided: ensure this is added to the bottom
-      else {
-        newItem = cloneLayoutItem({w: 1, h: 1, x: 0, y: bottom(layout), i: child.key || "1"});
-      }
-    }
-    layout[i] = newItem;
-  }
-
-  // Correct the layout.
-  layout = correctBounds(layout, {cols: cols});
-  layout = compact(layout, verticalCompact);
-
-  return layout;
-}
-*/
-
-/**
  * Validate a layout. Throws errors.
  *
  * @param  {Array}  layout        Array of layout items.
@@ -520,11 +443,6 @@ export function validateLayout(layout: Layout, contextName: string): void {
             ' must be a number!'
         );
       }
-    }
-    if (item.i && typeof item.i !== 'string') {
-      // number is also ok, so comment the error
-      // TODO confirm if commenting the line below doesn't cause unexpected problems
-      // throw new Error('VueGridLayout: ' + contextName + '[' + i + '].i must be a string!');
     }
     if (item.static !== undefined && typeof item.static !== 'boolean') {
       throw new Error(

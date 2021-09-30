@@ -31,7 +31,6 @@ import {
   getColsFromBreakpoint,
   findOrGenerateResponsiveLayout,
 } from '../helpers/responsiveUtils';
-//var eventBus = require('./eventBus');
 
 import GridItem from './GridItem.vue';
 import {
@@ -237,7 +236,6 @@ export default {
 
         self.initResponsiveFeatures();
 
-        //self.width = self.$el.offsetWidth;
         addWindowEventListener('resize', self.onWindowResize);
 
         compact(self.layout, self.verticalCompact);
@@ -260,11 +258,9 @@ export default {
     layoutUpdate() {
       if (this.layout !== undefined && this.originalLayout !== null) {
         if (this.layout.length !== this.originalLayout.length) {
-          // console.log("### LAYOUT UPDATE!", this.layout.length, this.originalLayout.length);
 
           let diff = this.findDifference(this.layout, this.originalLayout);
           if (diff.length > 0) {
-            // console.log(diff);
             if (this.layout.length > this.originalLayout.length) {
               this.originalLayout = this.originalLayout.concat(diff);
             } else {
@@ -309,7 +305,6 @@ export default {
       );
     },
     dragEvent: function (eventName, id, x, y, h, w) {
-      //console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
       let l = getLayoutItem(this.layout, id);
       //GetLayoutItem sometimes returns null object
       if (l === undefined || l === null) {
@@ -325,7 +320,6 @@ export default {
         this.$nextTick(function () {
           this.isDragging = true;
         });
-        //this.$broadcast("updateWidth", this.width);
         this.eventBus.$emit('updateWidth', this.width);
       } else {
         this.$nextTick(function () {
@@ -334,6 +328,7 @@ export default {
       }
 
       // Move the element to the dragged location.
+      // eslint-disable-next-line
       this.layout = moveElement(
         this.layout,
         l,
