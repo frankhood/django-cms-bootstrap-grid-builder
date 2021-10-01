@@ -294,9 +294,9 @@
 </template>
 
 <script>
-import GridItem from './components/GridItem.vue';
-import GridLayout from './components/GridLayout.vue';
-import { getDocumentDir, setDocumentDir } from './helpers/DOM';
+import GridItem from './GridItem.vue';
+import GridLayout from './GridLayout.vue';
+import { getDocumentDir, setDocumentDir } from '../helpers/DOM';
 import palette from 'google-palette';
 
 const blockHeightModule = 8;

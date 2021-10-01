@@ -1,6 +1,5 @@
-=================================
 Django CMS bootstrap grid builder
-=================================
+*********************************
 
 .. image:: https://badge.fury.io/py/django-cms-bootstrap-grid-builder.svg
     :target: https://badge.fury.io/py/django-cms-bootstrap-grid-builder
@@ -13,7 +12,7 @@ Django CMS bootstrap grid builder
 
 
 Documentation
--------------
+=============
 
 The full documentation is at https://django-cms-bootstrap-grid-builder.readthedocs.io.
 
@@ -37,8 +36,8 @@ Add it to your `INSTALLED_APPS`:
         ...
     )
 
-If you want to use bootstrap_grid_builder by defaults you need to specify only 
-default plugin structure placeholder in your settings.py. 
+If you want to use bootstrap_grid_builder by defaults you need to specify only
+default plugin structure placeholder in your settings.py.
 
 .. code-block:: python
 
@@ -163,77 +162,6 @@ After model creation run makemigration & migrate to create yours models in datab
     $ python manage.py migrate
 
 
-Fontend
--------
-
-::
-
-  This is a Vue.js application for creating custom bootstrap grids
-  throughout an intuitive interface and draggable elements
-
-**This project uses**
-
-::
-
-  element-resize-detector: https://github.com/wnr/element-resize-detector
-  interactjs: https://interactjs.io/
-  vue-drag-drop: https://github.com/cameronhimself/vue-drag-drop
-  google-palette: https://github.com/google/palette.js/tree/master
-  bootstrap: https://github.com/twbs/bootstrap
- 
- 
-**Browser Compatibility**
- 
-::
-
-  this package JS compiled dist has full support of ES5.
-  check it with npx es-check es5 ./bootstrap_grid_builder/static/cms_plugin_structure/dist/js/*.js --verbose
- 
- 
-**Frontend source folder ascii tree**
- 
-::
-
-  /django-cms-bootstrap-grid-builder/src
-  ├─ main.js
-  ├─ page-layout-builder.vue
-  ├─ assets
-  │  └─ logo.png
-  ├─ components
-  │  ├─ CustomDragElement.vue
-  │  ├─ GridItem.vue
-  │  ├─ GridLayout.vue
-  │  └─ index.js
-  └─ helpers
-     ├─ DOM.js
-     ├─ draggableUtils.js
-     ├─ responsiveUtils.js
-     └─ utils.js
-
-**How it works**
- 
-::
-
-  The informations obtained from the interface configuration
-  are serialized into a JSON object and sent to the backend
-  wich replicates the desired grid structure with Django plugins templates
-
-
-**Contribution guide**
- 
-::
-
-  Pull requests:
-  
-  - Fork the repo and create your branch from develop.
-  - If you've added code that should be tested, add tests.
-  - Ensure the code is documented, use comments where needed.
-  - Remember to build and include buid files in your commit.
-  - Make sure your code lints, run yarn lint to unify code style.
-
-
-
-
 Running Tests
 -------------
 
@@ -253,12 +181,54 @@ Development commands
     $ pip install -r requirements_dev.txt
     $ python manage.py migrate
     $ python manage.py runserver
-    
+
+
+
+
+Frontend
+========
+This is a Vue.js application for creating custom bootstrap grids throughout an intuitive interface and draggable elements
+
+Browser Compatibility
+---------------------
+The page-layout-builder component is compatible with modern browsers such as Chrome, Firefox, Safari, Opera, and Edge. It also supports Internet Explorer 11 but with limited performance.
+
+
+Frontend source folder ascii tree
+---------------------------------
+
+::
+
+  /django-cms-bootstrap-grid-builder/src
+  ├─ main.js  //Entrypoint for build
+  ├─ index.js  //Entrypoint for development
+  ├─ components
+  │  ├─ CustomDragElement.vue
+  │  ├─ page-layout-builder.vue
+  │  ├─ GridItem.vue
+  │  ├─ GridLayout.vue
+  │  └─ index.js
+  └─ helpers
+     ├─ DOM.js
+     ├─ draggableUtils.js
+     ├─ responsiveUtils.js
+     └─ utils.js
+
+
+How it works
+---------------------------------
+The informations obtained from the interface configuration are serialized into a JSON object and sent to the backend wich replicates the desired grid structure with Django plugins templates
+
+
+Development commands
+---------------------
+
+::
     # Front-end
+    $ npm i -g yarn rimraf @vue/cli
     $ yarn install
-    $ yarn serve (lauches local live reloading server)
-    (or, to build the static dist  to be used by the server )
-    $ yarn build (creates dist at django-cms-bootstrap-grid-builder/bootstrap_grid_builder/static/cms_plugin_structure/dist)
+    $ yarn serve (for development, lauches local live reloading server)
+    $ yarn build (for production build, creates dist at django-cms-bootstrap-grid-builder/bootstrap_grid_builder/static/cms_plugin_structure/dist)
 
 
 Credits
@@ -266,8 +236,10 @@ Credits
 
 Tools used in rendering this package:
 
-*  Cookiecutter_
-*  `cookiecutter-djangopackage`_
-
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`cookiecutter-djangopackage`: https://github.com/pydanny/cookiecutter-djangopackage
+*  `Cookiecutter <https://github.com/audreyr/cookiecutter/>`_
+*  `cookiecutter-djangopackage <https://github.com/pydanny/cookiecutter-djangopackage/>`_
+*  `element-resize-detector <https://github.com/wnr/element-resize-detector/>`_
+*  `interactjs <https://interactjs.io/>`_
+*  `vue-drag-drop <https://github.com/cameronhimself/vue-drag-drop/>`_
+*  `google-palette <https://github.com/google/palette.js/tree/master/>`_
+*  `bootstrap <https://github.com/twbs/bootstrap/>`_

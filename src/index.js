@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import PageLayoutBuilder from './page-layout-builder.vue';
+import PageLayoutBuilder from './components/page-layout-builder.vue';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { Drag, Drop } from 'vue-drag-drop';
