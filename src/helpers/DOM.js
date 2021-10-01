@@ -1,4 +1,4 @@
-let currentDir: 'ltr' | 'rtl' | 'auto' = 'auto';
+let currentDir = 'auto';
 
 function hasDocument() {
   return typeof document !== 'undefined';
@@ -19,7 +19,7 @@ export function getDocumentDir() {
   return direction;
 }
 
-export function setDocumentDir(dir: 'ltr' | 'rtl' | 'auto') {
+export function setDocumentDir(dir) {
   if (!hasDocument) {
     currentDir = dir;
     return;
@@ -29,7 +29,7 @@ export function setDocumentDir(dir: 'ltr' | 'rtl' | 'auto') {
   html.setAttribute('dir', dir);
 }
 
-export function addWindowEventListener(event: string, callback: () => mixed) {
+export function addWindowEventListener(event, callback) {
   if (!hasWindow) {
     callback();
     return;
@@ -37,10 +37,7 @@ export function addWindowEventListener(event: string, callback: () => mixed) {
   window.addEventListener(event, callback);
 }
 
-export function removeWindowEventListener(
-  event: string,
-  callback: () => mixed
-) {
+export function removeWindowEventListener(event, callback) {
   if (!hasWindow) {
     return;
   }
