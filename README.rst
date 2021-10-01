@@ -224,6 +224,7 @@ Development commands
 ---------------------
 
 ::
+
     # Front-end
     $ npm i -g yarn rimraf @vue/cli
     $ yarn install
