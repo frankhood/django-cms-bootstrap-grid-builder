@@ -139,6 +139,8 @@ LANGUAGES = (
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
 
 CMS_TEMPLATES = [
     ('home.html', 'Home page template'),
