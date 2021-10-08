@@ -1,5 +1,5 @@
 {% load cms_tags %}
-<div class="{{ instance.get_cols_xs_css_class|default:'' }} {{ instance.get_cols_sm_css_class|default:'' }} {{ instance.get_cols_md_css_class|default:'' }} {{ instance.get_cols_lg_css_class|default:'' }} {{ instance.get_cols_xl_css_class|default:'' }}">
+<div class="{% if instance.cols_xs %}{{ instance.get_cols_xs_css_class|default:'' }}{% endif %} {% if instance.cols_sm %}{{ instance.get_cols_sm_css_class|default:'' }}{% endif %} {% if instance.cols_md %}{{ instance.get_cols_md_css_class|default:'' }}{% endif %} {% if instance.cols_lg %}{{ instance.get_cols_lg_css_class|default:'' }}{% endif %} {% if instance.cols_xl %}{{ instance.get_cols_xl_css_class|default:'' }}{% endif %}">
   {% if instance.child_plugin_instances %}
       {% for plugin in instance.child_plugin_instances %}
         {% render_plugin plugin %}

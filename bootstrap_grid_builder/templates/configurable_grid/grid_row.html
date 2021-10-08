@@ -1,5 +1,5 @@
 {% load cms_tags %}
-<div class="row {{instance.get_variant_class_css_class}}">
+<div class="row {% if instance.variant_class %}{{ instance.get_variant_class_css_class }}{% endif %}">
   {% if instance.child_plugin_instances %}
     {% for plugin in instance.child_plugin_instances %}
         {% render_plugin plugin %}
