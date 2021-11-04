@@ -27,7 +27,7 @@ pip-log.txt
 .tox
 nosetests.xml
 htmlcov
-
+.DS_Store
 # Translations
 *.mo
 
@@ -47,7 +47,8 @@ output/*/index.html
 docs/_build
 
 
-.coverage
-.tox
+.coverage/
+.tox/
 .python-version
-/node_modules
+.DS_Store/
+node_modules/

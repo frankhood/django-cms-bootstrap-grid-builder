@@ -1,0 +1,4 @@
+Django>=2.2
+django-cms>=3.7.0
+jsonfield>=2.0.2
+django-jsoneditor>=0.1.6

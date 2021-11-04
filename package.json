@@ -1,0 +1,57 @@
+{
+  "name": "django-cms-bootstrap-grid-builder",
+  "version": "2.3.7",
+  "description": "A Django cms plugin to build custom bootstrap grids.",
+  "keywords": [
+    "django",
+    "cms",
+    "bootsrap",
+    "grid",
+    "builder",
+    "responsive",
+    "plugin",
+    "layout",
+    "json",
+    "drag and drop",
+    "draggable",
+    "drag&drop",
+    "frankhood"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frankhood/django-cms-bootstrap-grid-builder.git"
+  },
+  "author": "Frankhood s.r.l. <info@frankhood.it> (https://www.frankhood.it/)",
+  "scripts": {
+    "serve": "vue-cli-service serve ./src/index.js",
+    "build": "rimraf ./bootstrap_grid_builder/static/cms_plugin_structure/dist && vue-cli-service build --dest ./bootstrap_grid_builder/static/cms_plugin_structure/dist",
+    "lint": "vue-cli-service lint --fix --ext .js,.vue ./src && prettier --write ./src"
+  },
+  "dependencies": {
+    "element-resize-detector": "^1.1.15",
+    "google-palette": "^1.1.0",
+    "interactjs": "^1.6.3",
+    "vue-drag-drop": "^1.1.4"
+  },
+  "devDependencies": {
+    "bootstrap": "^5.1.1",
+    "@babel/core": "^7.14.3",
+    "@babel/plugin-proposal-throw-expressions": "^7.14.5",
+    "@vue/cli-plugin-babel": "^3.4.1",
+    "@vue/cli-plugin-eslint": "^3.4.1",
+    "@vue/cli-service": "^3.4.1",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-standard": "^3.0.5",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-transform-flow-comments": "^6.7.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^7.17.0",
+    "prettier": "2.4.1",
+    "rimraf": "^2.6.2",
+    "sass": "^1.22.10",
+    "sass-loader": "^7.0.1",
+    "vue": "^2.6.10",
+    "vue-template-compiler": "^2.6.10"
+  }
+}
