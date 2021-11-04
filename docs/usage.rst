@@ -2,17 +2,17 @@
 Usage
 =====
 
-To use Django CMS bootstrap grid builder in a project, add it to your `INSTALLED_APPS`:
+To use Django Cms Bootstrap Grid Builder in a project, add it to your `INSTALLED_APPS`:
 
 .. code-block:: python
 
     INSTALLED_APPS = (
         ...
-        'bootstrap_grid_builder.apps.BootstrapGridBuilderConfig',
+        'bootstrap_grid_builder.apps.CmsBootstrapGridBuilderConfig',
         ...
     )
 
-Add Django CMS bootstrap grid builder's URL patterns:
+Add Django Cms Bootstrap Grid Builder's URL patterns:
 
 .. code-block:: python
 

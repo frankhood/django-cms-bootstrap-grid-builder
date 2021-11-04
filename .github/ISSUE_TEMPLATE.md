@@ -1,4 +1,4 @@
-* Django CMS bootstrap grid builder version:
+* Django Cms Bootstrap Grid Builder version:
 * Django version:
 * Python version:
 * Operating System:

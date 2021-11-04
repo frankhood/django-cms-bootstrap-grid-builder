@@ -3,5 +3,6 @@ include CONTRIBUTING.rst
 include HISTORY.rst
 include LICENSE
 include README.rst
+include requirements_test.txt
 include requirements.txt
 recursive-include bootstrap_grid_builder *.html *.png *.gif *js *.css *jpg *jpeg *svg *py
