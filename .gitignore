@@ -50,4 +50,4 @@ docs/_build
 .coverage
 .tox
 .python-version
-/node_modules/*
+/node_modules
