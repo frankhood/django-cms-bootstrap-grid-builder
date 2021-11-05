@@ -1,6 +1,6 @@
-=============================
+=================================
 Django Cms Bootstrap Grid Builder
-=============================
+=================================
 
 .. image:: https://badge.fury.io/py/django-cms-bootstrap-grid-builder.svg/?style=flat-square
     :target: https://badge.fury.io/py/django-cms-bootstrap-grid-builder
@@ -15,6 +15,10 @@ Django Cms Bootstrap Grid Builder
 This tool offers the preliminary drafting of a grid layout consisting of containers, rows and columns,
 allows you to correctly define the spaces assigned to each page content,
 and to map these spaces for the different responsive steps.
+
+.. image:: docs/images/create_new_page_example.png
+  :width: 100%
+  :alt: Alternative text
 
 Documentation
 =============
