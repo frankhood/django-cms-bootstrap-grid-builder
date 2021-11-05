@@ -18,7 +18,7 @@ and to map these spaces for the different responsive steps.
 
 .. image:: docs/images/create_new_page_example.png
   :width: 100%
-  :alt: Alternative text
+  :alt: See our youtube video! https://youtu.be/GXr_xEXcwZw
 
 Documentation
 =============
