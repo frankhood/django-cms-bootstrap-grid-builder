@@ -52,3 +52,5 @@ docs/_build
 .python-version
 .DS_Store/
 node_modules/
+
+db.sqlite3
