@@ -23,7 +23,7 @@ and to map these spaces for the different responsive steps.
 Documentation
 =============
 
-The full documentation is at https://django-cms-bootstrap-grid-builder.readthedocs.io.
+The full documentation is at https://django-cms-bootstrap-grid-builder.readthedocs.io/en/latest/.
 
 Quickstart
 ----------
