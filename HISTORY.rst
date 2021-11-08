@@ -13,3 +13,9 @@ History
 ++++++++++++++++++
 
 * Renamed LICENSE file in LICENSE.md for publication on PyPI.
+
+
+0.1.2 (2021-11-08)
+++++++++++++++++++
+
+* Added dist files removing dist from .gitignore and updated README.rst.
