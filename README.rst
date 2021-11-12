@@ -16,8 +16,6 @@ This tool offers the preliminary drafting of a grid layout consisting of contain
 allows you to correctly define the spaces assigned to each page content,
 and to map these spaces for the different responsive steps.
 
-![](docs/videos/example_grid_builder.gif)
-
 .. image:: docs/videos/example_grid_builder.gif
 
 Documentation
