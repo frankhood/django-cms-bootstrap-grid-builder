@@ -16,7 +16,7 @@ This tool offers the preliminary drafting of a grid layout consisting of contain
 allows you to correctly define the spaces assigned to each page content,
 and to map these spaces for the different responsive steps.
 
-.. video:: docs/videos/example_grid_builder.mov
+.. video:: https://github.com/frankhood/django-cms-bootstrap-grid-builder/docs/videos/example_grid_builder.mov
     :width: 500
     :height: 300
     :autoplay:
